@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='estilos/menu.css'>
+    <title>Restaurante PRUEBAS</title>
+</head>
+<body>
+    <header class="bg-dark text-white p-3">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="menu">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a href="index.html" class="nav-link text-light fs-5">Inicio</a></li>
+                            <li class="nav-item"><a href="menu.html" class="nav-link text-light fs-5">Mirar la carta</a></li>
+                            <li class="nav-item"><a href="cuenta.html" class="nav-link text-light fs-5">Mirar la cuenta</a></li>
+                            <li class="nav-item"><a href="contacto.html" class="nav-link text-light fs-5">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="fs-5">Mesa: 0</p>
+            </div>
+        </div>
+    </header>
+    <main class="content">
+        <div class="container mt-3">
+            <div class="row mb-3">
+                <div class="col">
+                    <div id="alergenos">
+                        <p>Alérgenos</p>
+                        <p>Aquí puedes marcar aquellos alergenos que no puedes consumir para que no te aparezcan platos que los contengan</p>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Gluten" id="cGluten">
+                        <label class="form-check-label" for="cGluten">Gluten</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Crustáceos" id="cCrustaceos">
+                        <label class="form-check-label" for="cCrustaceos">Crustáceos</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Huevos" id="cHuevos">
+                        <label class="form-check-label" for="cHuevos">Huevos</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Pescado" id="cPescado">
+                        <label class="form-check-label" for="cPescado">Pescado</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Cacahuetes" id="cCacahuete">
+                        <label class="form-check-label" for="cCacahuete">Cacahuetes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Soja" id="cSoja">
+                        <label class="form-check-label" for="cSoja">Soja</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Lacteos" id="cLacteos">
+                        <label class="form-check-label" for="cLacteos">Lácteos</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Frutos de cáscara" id="cFCascara">
+                        <label class="form-check-label" for="cFCascara">Frutos de cáscara</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Apio" id="cApio">
+                        <label class="form-check-label" for="cApio">Apio</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Mostaza" id="cMostaza">
+                        <label class="form-check-label" for="cMostaza">Mostaza</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Sésamo" id="cSesamo">
+                        <label class="form-check-label" for="cSesamo">Sésamo</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Sulfitos" id="cSulfitos">
+                        <label class="form-check-label" for="cSulfitos">Sulfitos</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="Altramuces" id="cAltramuces">
+                        <label class="form-check-label" for="cAltramuces">Altramuces</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" type="checkbox" value="Moluscos" id="cMoluscos">
+                        <label class="form-check-label" for="cMoluscos">Moluscos</label>
+                    </div>
+                    <div class="mt-3">
+                        <button type="button" class="btn btn-primary" id="btnFiltrar">Guardar Selección</button>
+                    </div>
+                </div>
+            </div>
+            <div id="menuPlatos">
+                <div id="entrantes">
+                    
+                </div>
+                <div id="arroces">
+                    
+                </div>
+                <div id="carne">
+                    
+                </div>
+                <div id="pescado">
+                    
+                </div>
+                <div id="postres">
+                    
+                </div>
+            </div>
+            <div id="pedir" class="mb-2">
+                <p class="lead">Cuando ya tengas todo decidido pulsa en el botón de abajo y se enviara el pedido a cocina</p>
+                <button type="button" class="btn btn-primary" id="btnPedir">Pedir platos</button>
+            </div>
+        </div>
+    </main>
+    <footer id="foot" class="bg-dark text-white p-3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="h3">Restaurante Prueba</p>
+                </div>
+                <div class="col text-end">
+                    <p>Políticas de privacidad y cookies</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="js/menu.js"></script>
+</body>
+</html>
