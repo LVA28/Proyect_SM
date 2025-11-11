@@ -1,5 +1,36 @@
 'use strict'
 
+function getInterestedUsers(element, users)
+{
+    let interestedUsers = []
+
+    element.interestedPersons.forEach(n => {
+        let u = getUserById(n, users)
+        if (u != null)
+        {
+            interestedUsers.push(u)
+        }
+    })
+
+    return interestedUsers
+}
+
+function getUsers(element, users) 
+{
+    return getUserById(element.userId, users)
+}
+
+function getUserById(id, users)
+{
+    for(let i = 0; i < users.length; i++)
+    {
+        if (users[i].id == id) return users[i]
+    }
+
+    return null
+}
+
+
 function getRandomId()
 {
     return Math.floor(Math.random() * 1000)
@@ -20,11 +51,6 @@ class User
         return new User(getRandomId(), "", "", "")
     }
 
-    verifyUser()
-    {
-        //De momento se queda así, hay que ver si queremos comprobaciones extras
-        return this.password.length != 0 && (this.email.length != 0 || this.username.length != 0)
-    }
 }
 
 class Product
