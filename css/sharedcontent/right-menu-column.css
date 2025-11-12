@@ -1,0 +1,34 @@
+:root, body
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-menu-column
+{
+    width: 12vw;
+    height: 100vh;
+    max-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.left-menu-option
+{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-menu-option-text
+{
+    text-align: center;
+}
