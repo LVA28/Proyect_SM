@@ -6,6 +6,10 @@
   font-family: "Sohne";
   src: url("../resources/tipographies/TestSohneBreit-Dreiviertelfett-BF663d89c955618.otf");
 }
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("../resources/tipographies/SourceSans3-VariableFont_wght.ttf");
+}
 
 :root{
     --c_verde_claro: #67dc68;
@@ -18,7 +22,8 @@
     --c_gris_oscuro: #171717;
 
     --fuente-titulo: "Sohne", sans-serif;
-    --fuente-texto: "Neue Montreal", sans-serif;
+    --fuente-subtitulo: "Neue Montreal", sans-serif;
+    --fuente-subtitulo: "Source Sans 3", sans-serif;
     --tamano-fuente-base: 16px;
     --altura-linea: 1.5;
 }
