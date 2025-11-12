@@ -8,7 +8,11 @@
 }
 @font-face {
   font-family: "Source Sans 3";
-  src: url("../resources/tipographies/SourceSans3-VariableFont_wght.ttf");
+  src: url("../resources/tipographies/SourceSans3-Medium.ttf");
+}
+@font-face {
+  font-family: "Stack Sans";
+  src: url("../resources/tipographies/StackSansText-Medium.ttf");
 }
 
 :root{
@@ -23,7 +27,8 @@
 
     --fuente-titulo: "Sohne", sans-serif;
     --fuente-subtitulo: "Neue Montreal", sans-serif;
-    --fuente-subtitulo: "Source Sans 3", sans-serif;
+    --fuente-texto: "Source Sans 3", sans-serif;
+    --fuente-botones: "Stack Sans", sans-serif;
     --tamano-fuente-base: 16px;
     --altura-linea: 1.5;
 }
