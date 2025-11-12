@@ -31,9 +31,9 @@ function getUserById(id, users)
 }
 
 
-function getRandomId()
+function getRandomId(elements)
 {
-    return Math.floor(Math.random() * 1000)
+    return !elements || elements.length === 0 ? Math.floor(Math.random() * 1000) : Math.max(...elements) + 1
 }
 
 class User
