@@ -3,25 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../../css/professionalzone/repair-resume.css" rel='stylesheet' type='text/css'>
-    <script src="../../js/professionalzone/repair-resume.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Nueva Cuenta</title>
 </head>
-<body>
-    <main>
-        <div class="principal"> 
-            <h1>Únete a Fixhub</h1>
-            <div class="usuario">
-                <h3>Nombre de Usuario</h3>
-                <input type="usuario"/>
-            </div>
-            <div class="correo">
-                <h3>Dirección de correo electrónico</h3>
-                <input type="usuario"/>
-            </div>
-                <h3>Contraseña</h3>
-                <input type="usuario"/>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    
+    <div class="card p-4 shadow-lg" style="width: 22rem;">
+        
+        <h1 class="text-center mb-4 fs-3">Únete a FixHub</h1>
+        
+        <div class="mb-3">
+            <p class="form-label mb-1">Nombre de Usuario</p>
+            <input type="text" class="form-control" id="username" name="username" required>
         </div>
-    </main>
+
+        <div class="mb-3">
+            <p class="form-label mb-1">Dirección de correo electrónico</p>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+
+        <div class="mb-3">
+            <p class="form-label mb-1">Contraseña</p>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button class="btn btn-primary w-100">Registrarse</button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
