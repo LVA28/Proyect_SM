@@ -1,0 +1,20 @@
+.bg-image {
+    background-image: url("../resources/images/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Capa oscura opcional encima del fondo */
+.overlay {
+    background: rgba(0, 0, 0, 0.4);
+    height: 100%;
+}
+
+/* Sombreado solo en la mitad izquierda */
+.left-panel {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0 20px 20px 0;
+}
