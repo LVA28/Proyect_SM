@@ -48,6 +48,7 @@ function getRandomPassword() {
 
 // Generate 75 random users
 function create_users(){
+    let users = []
     for (let i = 0; i < 75; i++) {
         const id = getRandomId();
         const username = getRandomUsername();
@@ -58,6 +59,3 @@ function create_users(){
     }
     return users
 }
-
-
-console.log(users);

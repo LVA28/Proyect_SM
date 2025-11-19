@@ -10,6 +10,11 @@ body{
     justify-content: space-between;
 }
 
+main
+{
+    flex-grow: 1;
+}
+
 .left-menu-column
 {
     width: 12vw;

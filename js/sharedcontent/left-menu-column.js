@@ -1,8 +1,11 @@
 'use strict'
 
+let container
+
 document.addEventListener('DOMContentLoaded', () =>{
+
+    container = document.querySelector('main')
     document.querySelector('#go-repair-catalog').addEventListener('click', () => {
-        //CARGAR CONTENIDO DE LA ZONA CLICKADA
     })
 
     document.querySelector('#go-my-products').addEventListener('click', () => {
