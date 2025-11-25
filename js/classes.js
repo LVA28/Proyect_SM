@@ -76,12 +76,13 @@ class Product
 
 class Tutorial
 {
-    constructor(id, userId, name, videoUrl, description, tags, viewsCounter)
+    constructor(id, userId, name, videoUrl, bannerUrl, description, tags, viewsCounter)
     {
         this.id = id
         this.userId = userId
         this.name = name
         this.videoUrl = videoUrl
+        this.bannerUrl = bannerUrl
         this.description = description
         this.tags = tags
         this.viewsCounter = viewsCounter
@@ -89,7 +90,7 @@ class Tutorial
 
     static defaultTutorial()
     {
-        return new Tutorial(getRandomId(), -1, "", "", "", [], 0)
+        return new Tutorial(getRandomId(), -1, "", "", "", "", [], 0)
     }
 }
 
@@ -111,11 +112,12 @@ class ChatMessage
 
 class RepairApplication
 {
-    constructor(id, userId, name, imageUrl, location, description, tags, interestedPersons)
+    constructor(id, userId, name, price, imageUrl, location, description, tags, interestedPersons)
     {
         this.id = id
         this.userId = userId
         this.name = name
+        this.price = price
         this.imageUrl = imageUrl
         this.location = location
         this.description = description
@@ -125,6 +127,6 @@ class RepairApplication
 
     static defaultRepairApplication()
     {
-        return new RepairApplication(getRandomId(), -1, "", "", "", "", [], [])
+        return new RepairApplication(getRandomId(), -1, "", 0, "", "", "", [], [])
     }
 }
