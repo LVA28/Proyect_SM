@@ -1,19 +1,23 @@
+'use strict';
+
 // Simulación de datos de reparación
 const repairData = [
     new RepairApplication(
         101,
         1,
         "Arreglo de Fuga en Tubería",
-        "placeholder",
-        "Madrid",
+        0, // price
+        "placeholder", // imageUrl
+        "Madrid", // location
         "Necesito un fontanero urgente para una pequeña fuga en el baño.",
         ["Fontanería", "Urgente", "24h"],
-        [2, 3]
+        [2, 3] // interestedPersons
     ),
     new RepairApplication(
         102,
         1,
         "Pintar Salón y Habitación",
+        0,
         "placeholder",
         "Barcelona",
         "Pintar paredes y techo de salón (30m2) y una habitación (12m2).",
@@ -24,11 +28,12 @@ const repairData = [
         103,
         1,
         "Instalación de Enchufe Doble",
+        0,
         "placeholder",
         "Valencia",
         "Añadir un nuevo punto de electricidad en la cocina.",
         ["Electricidad"],
-        []
+        [] // nadie interesado
     )
 ];
 
@@ -38,57 +43,77 @@ const repairData = [
  * @returns {HTMLElement} El elemento div que contiene la tarjeta de reparación.
  */
 function createRepairCard(application) {
-    // Usamos 'd-flex' para el contenedor principal de cada tarjeta
+    // Contenedor principal de la tarjeta
     const card = document.createElement('div');
     card.className = 'd-flex flex-column flex-md-row p-3 border rounded shadow-sm bg-white';
     card.id = `repair-${application.id}`;
 
-    // Contenedor de la Imagen (simulando el bloque gris)
+    // Contenedor de la imagen / bloque gris
     const imageContainer = document.createElement('div');
     imageContainer.className = 'd-flex justify-content-center align-items-center me-md-3 mb-3 mb-md-0 border rounded flex-shrink-0';
-    imageContainer.style.width = '200px'; // Ancho fijo para simular el bloque
-    imageContainer.style.height = '120px'; // Alto fijo
+    imageContainer.style.width = '200px';
+    imageContainer.style.height = '120px';
     imageContainer.innerHTML = '<strong class="text-secondary">PRIMERA IMAGEN</strong>';
 
-    // Contenido de la Reparación (Nombre y Tags)
+    // Contenido de la reparación (nombre, descripción, tags)
     const content = document.createElement('div');
     content.className = 'flex-grow-1';
 
-    // Nombre/Título
+    // Nombre / título
     const nameHeader = document.createElement('h5');
     nameHeader.className = 'mb-2';
     nameHeader.textContent = application.name;
 
-    // Contenedor de los Tags (Precio y Localidad)
+    // Descripción
+    const description = document.createElement('p');
+    description.className = 'mb-2';
+    description.textContent = application.description;
+
+    // Contenedor de los tags (precio y localidad)
     const tagContainer = document.createElement('div');
     tagContainer.className = 'd-flex flex-wrap gap-2 mb-3';
 
-    // Botón de Precio (simulado)
+    // Badge de precio
     const priceBadge = document.createElement('span');
     priceBadge.className = 'badge bg-secondary';
-    priceBadge.textContent = 'Precio';
+    priceBadge.textContent = application.price ? `${application.price} €` : 'Precio a acordar';
 
-    // Botón de Localidad (simulado)
+    // Badge de localidad
     const locationBadge = document.createElement('span');
     locationBadge.className = 'badge bg-secondary';
     locationBadge.textContent = application.location;
-    
+
     tagContainer.appendChild(priceBadge);
     tagContainer.appendChild(locationBadge);
 
-    // Agregamos Nombre y Tags al Contenido
+    // Tags extra (Fontanería, Urgente, etc.)
+    if (application.tags && application.tags.length > 0) {
+        application.tags.forEach(tag => {
+            const tagBadge = document.createElement('span');
+            tagBadge.className = 'badge bg-light text-dark border';
+            tagBadge.textContent = tag;
+            tagContainer.appendChild(tagBadge);
+        });
+    }
+
+    // Agregamos al contenido
     content.appendChild(nameHeader);
+    content.appendChild(description);
     content.appendChild(tagContainer);
 
-    // Columna del Botón VER CHAT
+    // Columna del botón VER CHAT
     const chatButtonContainer = document.createElement('div');
     chatButtonContainer.className = 'd-flex align-items-center justify-content-center mt-3 mt-md-0';
 
     const chatButton = document.createElement('button');
     chatButton.className = 'btn btn-primary btn-lg w-100 w-md-auto';
     chatButton.textContent = 'VER CHAT';
-    // Nota: El estilo de la imagen no es fácil de replicar exactamente sin CSS, 
-    // pero el botón azul grande de Bootstrap es el más cercano.
+    chatButton.type = 'button';
+
+    // Aquí podrías añadir un listener para ir al chat
+    // chatButton.addEventListener('click', () => {
+    //     // lógica para abrir el chat de esta reparación
+    // });
 
     chatButtonContainer.appendChild(chatButton);
 
