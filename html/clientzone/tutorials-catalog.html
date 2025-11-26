@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../css/clientzone/tutorials-catalog.css" rel='stylesheet' type='text/css'>
+    
     <title>Catálogo de tutoriales</title>
 </head>
 <body>
@@ -14,10 +16,10 @@
     </main>
 
     <template id="tutorial-header-template">
-        <div>
+        <div class="tutorial-header">
             <img class="repair-image">
-            <div>
-                <div>
+            <div class="tutorial-info">
+                <div class="tutorial-first-row">
                     <p class="name">Nombre de la reparacion</p>
                     <div class="tags-container">
 
@@ -27,5 +29,8 @@
             </div>
         </div>
     </template>
+
+    <script src="../../js/classes.js"></script>
+    <script src="../../js/clientzone/tutorials-catalog.js"></script>
 </body>
 </html>

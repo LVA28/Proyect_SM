@@ -1,6 +1,5 @@
 'use strict'
 
-let template;
 
 const tutorials = [
     new Tutorial(
@@ -55,40 +54,47 @@ const tutorials = [
     )
 ];
 
-document.addEventListener('DOMContentLoaded', () => 
-{
-    template = document.querySelector('#tutorial-header-template')
 
-    loadTutorialsHeaders(document.querySelector('.tutorials-container'), tutorials)
+document.addEventListener('DOMContentLoaded', () => {
+    renderTutorialList(tutorials, document.querySelector('.tutorials-header-container'))
 })
 
-function loadTutorialsHeaders(container, tutorials)
-{
-    tutorials.forEach(n => loadTutorialHeader(container, n))
+function renderTutorialList(tutorialsArray, container) {
+    container.innerHTML = ""; // Limpia el container (opcional)
+
+    tutorialsArray.forEach(tutorial => {
+        renderSingleTutorial(tutorial, container);
+    });
 }
 
-function loadTutorialHeader(container, tutorial)
-{
-    const template = createTutorialHeader(tutorial)
-    template.querySelector('.tutorial-header').addEventListener('click', () =>{
-        alert("tODO!!")
-    })
 
-    container.appendChild(template)
-}
+function renderSingleTutorial(tutorial, container) {
+    const template = document.getElementById("tutorial-header-template");
+    const clone = template.content.cloneNode(true);
 
-function createTutorialHeader(tutorial)
-{
-    const copy = template.content.cloneNode(true)
-    copy.querySelector('.name').textContent = tutorial.name;
-    copy.querySelector('.repair-image').src = tutorial.bannerUrl;
-    copy.querySelector('.description').textContent = tutorial.description;
-    let tagsContainer = copy.querySelector('.tags-container')
-    tutorial.tags.forEach(n => {
-        const tag = document.createElement('p')
-        tag.classList.add('tag')
-        tag.textContent = n
-        tagsContainer.appendChild(tag)
-    })
-    return copy
+    const tutorialElement = clone.querySelector(".tutorial-header");
+
+    tutorialElement.addEventListener("click", () => {
+        alert("TODO!!")
+    });
+
+    const img = clone.querySelector(".tutorial-image");
+    img.src = tutorial.bannerUrl;
+    img.alt = tutorial.name;
+
+    clone.querySelector(".tutorial-author").textContent = tutorial.name;
+
+    clone.querySelector(".tutorial-description").textContent = tutorial.description;
+
+    const tagsContainer = clone.querySelector(".tutorial-tags");
+    tagsContainer.innerHTML = "";
+
+    tutorial.tags.forEach(tag => {
+        const span = document.createElement("span");
+        span.classList.add("tutorial-tag");
+        span.textContent = tag;
+        tagsContainer.appendChild(span);
+    });
+
+    container.appendChild(clone);
 }
