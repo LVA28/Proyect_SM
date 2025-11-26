@@ -7,15 +7,10 @@
 
 body{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
-main
-{
-    flex-grow: 1;
-}
-
-.left-menu-column
+.right-menu-column
 {
     width: 12vw;
     height: 100vh;
@@ -25,7 +20,7 @@ main
     flex-direction: column;
 }
 
-.left-menu-option
+.right-menu-option
 {
     flex-grow: 1;
     display: flex;
@@ -33,7 +28,7 @@ main
     justify-content: center;
 }
 
-.left-menu-option-text
+.right-menu-option-text
 {
     text-align: center;
 }
