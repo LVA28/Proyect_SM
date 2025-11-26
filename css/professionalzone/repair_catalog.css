@@ -1,0 +1,202 @@
+:root {
+    --accent-red: #e94b48;
+    --right-grad-a: #4cd964;
+    --right-grad-b: #2fb06b;
+}
+
+/* Evitar cualquier scroll horizontal no deseado */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden; /* <-- evita scroll horizontal */
+    box-sizing: border-box;
+}
+
+/* Forzar box-sizing en todos los elementos para evitar desbordes */
+*, *::before, *::after { box-sizing: inherit; }
+
+/* LEFT - barra lateral fija a la altura de la ventana */
+.left-col {
+    height: 100vh;            /* siempre 100% de la ventana */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cada bloque ocupa exactamente 1/4 de la altura de la ventana */
+.left-block {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+    background: #fff;
+    text-align: center;
+    padding: 8px;
+    word-break: break-word;
+    min-height: 0; /* prevenir overflow por flex child */
+}
+
+/* CENTER */
+.center-card {
+    padding: 18px 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* para permitir que el contenido use flex-grow */
+    min-height: 100vh; /* asegurar que se vea consistente */
+    overflow: hidden; /* evitar que su contenido provoque scroll global */
+}
+
+/* Título y buscador */
+.catalog-title {
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.search-input {
+    border: 3px solid #111;
+    border-radius: 6px;
+    background: #fff;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.search-input input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    width: 100%;
+}
+
+.filter-btn {
+    border: 2px solid #111;
+    background: #fff;
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+/* Lista de catálogo: scroll solo aquí si hace falta */
+.catalog-list {
+    overflow-y: auto;       /* scroll vertical interno */
+    padding-bottom: 18px;
+    max-height: calc(100vh - 160px); /* espacio para título/buscador (ajusta si cambias paddings) */
+}
+
+/* Item styling */
+.catalog-item {
+    border-top: 6px solid #111;
+    padding: 16px 0;
+}
+
+.name-box {
+    border: 3px solid #111;
+    padding: 6px;
+    text-align: center;
+    background: #fff;
+    font-weight: 700;
+}
+
+.meta-box {
+    border: 2px solid #111;
+    padding: 6px;
+    background: #fff;
+}
+
+.image-box {
+    border: 3px solid #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 6px;
+}
+
+.image-box img { 
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.desc-box {
+    border: 3px solid #111;
+    padding: 10px;
+    background: #fff;
+}
+
+.chat-btn {
+    background: var(--accent-red);
+    color: #fff;
+    border: none;
+    padding: 12px 10px;
+    font-weight: 700;
+    width: 100%;
+    border-radius: 4px;
+}
+
+/* RIGHT panel */
+.right-panel {
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--right-grad-a), var(--right-grad-b));
+    padding: 18px 10px;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.chev {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.profile-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    font-weight: 700;
+    margin-top: auto;
+}
+
+/* Responsive: ya NO convertimos la left-col a fila (evita scroll horizontal) */
+@media (max-width: 991.98px) {
+    .right-column { display: none; }
+}
+
+@media (max-width: 575.98px) {
+    .left-block {
+        height: auto;
+        padding: 12px;
+    }
+    /* permitimos que el centro use todo el ancho sin crear overflows */
+    .center-card { padding-left: 12px; padding-right: 12px; }
+}

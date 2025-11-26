@@ -1,0 +1,29 @@
+.tutorial-header
+{
+    cursor: pointer;
+    display: flex;
+    gap: 1rem;
+}
+
+.tutorial-info
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.tutorial-first-row
+{
+    display: flex;
+    gap: 1rem;
+}
+
+.tags-container
+{
+    display: flex;
+    gap: 1rem;
+}
+
+.description
+{
+    flex-grow: 1;
+}
