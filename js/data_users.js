@@ -1,21 +1,10 @@
+import * as D_U from "classes.js"
+
 'use strict'
 
 document.addEventListener('DOMContentLoader', () =>{
 
 })
-
-class User {
-    constructor(id, username, email, password) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
-    static defaultUser() {
-        return new User(getRandomId(), "", "", "");
-    }
-}
 
 // Helper functions to generate random data
 function getRandomId() {
@@ -58,6 +47,5 @@ function create_users(){
     }
     return users
 }
-
 
 console.log(users);
