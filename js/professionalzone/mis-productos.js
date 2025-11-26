@@ -1,39 +1,41 @@
-const productsData = [
+// Simulación de datos: Productos artesanales y locales
+let productsData = [
     {
         id: 1,
-        name: "Taladro Percutor",
-        price: "45€ / día",
+        name: "Mesa de Roble Restaurada",
+        price: "120€",
         location: "Madrid",
-        tags: ["Herramientas", "Construcción"],
-        description: "Taladro profesional en perfecto estado. Incluye maletín y brocas básicas."
+        tags: ["Muebles", "Upcycling", "Pieza única"],
+        description: "Mesa de centro antigua recuperada, tratada con barniz ecológico y patas de hierro forjado.",
+        date: "2023-11-10" 
     },
     {
         id: 2,
-        name: "Cámara Réflex Canon",
-        price: "30€ / día",
-        location: "Barcelona",
-        tags: ["Fotografía", "Electrónica"],
-        description: "Cámara ideal para sesiones de fotos y video. Incluye objetivo 18-55mm."
+        name: "Pack Jabones de Lavanda",
+        price: "18€",
+        location: "Valencia",
+        tags: ["Cosmética", "Vegano", "Km 0"],
+        description: "Set de 3 jabones artesanales hechos en frío con aceite de oliva virgen y lavanda de la zona.",
+        date: "2023-12-05"
     },
     {
         id: 3,
-        name: "Bicicleta de Montaña",
-        price: "15€ / día",
-        location: "Valencia",
-        tags: ["Deporte", "Aire libre"],
-        description: "Bicicleta talla M con suspensión delantera. Revisión recién hecha."
+        name: "Jarrón Cerámica 'Azul'",
+        price: "45€",
+        location: "Sevilla",
+        tags: ["Decoración", "Hecho a mano", "Cerámica"],
+        description: "Jarrón torneado a mano y esmaltado en azul cobalto. Ideal para flores secas o decoración.",
+        date: "2023-10-28" 
     }
 ];
 
 function createProductCard(product) {
     const card = document.createElement('div');
-    // Borde negro grueso como en el diseño original si quieres, o suave como bootstrap
     card.className = 'card border shadow-sm mb-3'; 
     
     const cardBody = document.createElement('div');
     cardBody.className = 'card-body';
     
-    // Usamos Grid de Bootstrap (Row) para las 3 columnas
     const row = document.createElement('div');
     row.className = 'row g-3 align-items-center';
 
@@ -41,7 +43,6 @@ function createProductCard(product) {
     const colInfo = document.createElement('div');
     colInfo.className = 'col-md-3 d-flex flex-column gap-2';
 
-    // Función auxiliar para crear las "cajas" de texto con borde
     const createInfoBox = (text) => {
         const box = document.createElement('div');
         box.className = 'border p-2 text-center rounded fw-bold bg-light';
@@ -58,7 +59,7 @@ function createProductCard(product) {
     
     const imgPlaceholder = document.createElement('div');
     imgPlaceholder.className = 'd-flex justify-content-center align-items-center border bg-light';
-    imgPlaceholder.style.height = '150px'; // Altura fija similar al diseño
+    imgPlaceholder.style.height = '150px';
     imgPlaceholder.style.width = '100%';
     imgPlaceholder.innerHTML = '<span class="text-secondary text-center">PRIMERA IMAGEN</span>';
     
@@ -98,7 +99,7 @@ function createProductCard(product) {
 }
 
 /**
- * Función principal para renderizar
+Función principal para renderizar
  */
 function renderProductCards() {
     const container = document.getElementById('products-cards-container');
@@ -111,4 +112,53 @@ function renderProductCards() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', renderProductCards);
+// 4. Lógica de Ordenación
+function setupSortListeners() {
+    // Helper para sacar el número del precio (quita el "€ / día")
+    const getPrice = (p) => parseInt(p.price.replace(/\D/g, ''));
+
+    // Precio: Menor a Mayor
+    document.getElementById('sort-price-asc').addEventListener('click', (e) => {
+        e.preventDefault(); // Evita que la página salte al inicio
+        productsData.sort((a, b) => getPrice(a) - getPrice(b));
+        updateLabel('btn-price-label', 'Precio: Menor a Mayor');
+        renderProductCards();
+    });
+
+    // Precio: Mayor a Menor
+    document.getElementById('sort-price-desc').addEventListener('click', (e) => {
+        e.preventDefault();
+        productsData.sort((a, b) => getPrice(b) - getPrice(a));
+        updateLabel('btn-price-label', 'Precio: Mayor a Menor');
+        renderProductCards();
+    });
+
+    // Fecha: Más Reciente
+    document.getElementById('sort-date-new').addEventListener('click', (e) => {
+        e.preventDefault();
+        // Ordenar fechas descendente (más nuevo primero)
+        productsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        updateLabel('btn-date-label', 'Fecha: Más Reciente');
+        renderProductCards();
+    });
+
+    // Fecha: Más Antigua
+    document.getElementById('sort-date-old').addEventListener('click', (e) => {
+        e.preventDefault();
+        // Ordenar fechas ascendente (más viejo primero)
+        productsData.sort((a, b) => new Date(a.date) - new Date(b.date));
+        updateLabel('btn-date-label', 'Fecha: Más Antigua');
+        renderProductCards();
+    });
+}
+
+// Función auxiliar para cambiar el texto del botón y saber qué filtro está activo
+function updateLabel(btnId, text) {
+    document.getElementById(btnId).textContent = text;
+}
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', () => {
+    renderProductCards();
+    setupSortListeners();
+});
