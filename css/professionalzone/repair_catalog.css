@@ -1,202 +1,300 @@
 :root {
-    --accent-red: #e94b48;
-    --right-grad-a: #4cd964;
-    --right-grad-b: #2fb06b;
+    --accent-red: #ff4747;
+    --border-thick: 3px solid #000;
+    --bg-gray-hover: #f0f0f0;
+    --right-grad-start: #5cdb6d;
+    --right-grad-end: #42b983;
 }
 
-/* Evitar cualquier scroll horizontal no deseado */
+/* --- BASE & RESET --- */
 html, body {
     height: 100%;
     margin: 0;
-    overflow-x: hidden; /* <-- evita scroll horizontal */
-    box-sizing: border-box;
+    font-family: sans-serif; /* O la fuente que uses */
 }
 
-/* Forzar box-sizing en todos los elementos para evitar desbordes */
-*, *::before, *::after { box-sizing: inherit; }
+/* Evita desbordes horizontales */
+body {
+    overflow-x: hidden;
+}
 
-/* LEFT - barra lateral fija a la altura de la ventana */
+/* --- LAYOUT PRINCIPAL --- */
+.main-row {
+    min-height: 100vh; /* Asegura que la fila ocupe toda la pantalla */
+}
+
+/* --- BARRA LATERAL IZQUIERDA (LEFT) --- */
 .left-col {
-    height: 100vh;            /* siempre 100% de la ventana */
+    /* En Desktop forzamos altura completa y quitamos paddings internos */
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+    height: 100vh; /* Ocupa toda la pantalla */
+    padding: 0;    /* ELIMINADO: Quitamos padding para que los bordes toquen los extremos */
+    
+    /* Borde derecho para separar del contenido central */
+    border-right: var(--border-thick); 
+    
+    /* Sticky para que se mantenga fija al bajar */
+    position: sticky; 
+    top: 0;
 }
 
-/* Cada bloque ocupa exactamente 1/4 de la altura de la ventana */
 .left-block {
-    flex: 1;
+    /* CLAVE 1: flex: 1 hace que se estiren para llenar todo el espacio vertical disponible */
+    flex: 1; 
+    
+    /* CLAVE 2: Quitamos márgenes para que se peguen unos a otros */
+    margin: 0; 
+    
+    /* Centrado del texto perfecto */
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #000;
-    background: #fff;
     text-align: center;
-    padding: 8px;
-    word-break: break-word;
-    min-height: 0; /* prevenir overflow por flex child */
+    
+    /* Estilos visuales */
+    background: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.3rem; /* Ajusta el tamaño de letra según necesites */
+    padding: 10px;     /* Espacio interno para que el texto no toque el borde */
+    
+    /* Borde: Usamos borde negro grueso */
+    border: var(--border-thick);
+    
+    /* TRUCO VISUAL: Evitar bordes dobles donde se juntan los bloques */
+    /* Hacemos que cada bloque suba 3px para superponerse al borde del anterior */
+    margin-top: -3px; 
 }
 
-/* CENTER */
-.center-card {
-    padding: 18px 0;
+.left-block:first-child {
+    margin-top: 0;
+    border-top: none; /* Opcional: Si el contenedor padre ya tiene borde arriba o está pegado al techo */
+}
+
+.left-block:last-child {
+    margin-bottom: 0;
+}
+
+.left-block:hover {
+    z-index: 1; /* Asegura que el borde se vea bien al pasar el mouse */
+}
+
+/* --- CONTENIDO CENTRAL (CENTER) --- */
+.center-col {
     display: flex;
     flex-direction: column;
-    height: 100%; /* para permitir que el contenido use flex-grow */
-    min-height: 100vh; /* asegurar que se vea consistente */
-    overflow: hidden; /* evitar que su contenido provoque scroll global */
+    /* En móvil el padding es menor, en desktop se ajusta solo */
 }
 
-/* Título y buscador */
-.catalog-title {
+.center-header {
+    margin-bottom: 2rem;
+}
+
+/* Título */
+.catalog-title-box {
+    border: var(--border-thick);
     background: #fff;
     text-align: center;
-    padding: 10px;
-    font-weight: 700;
-    margin-bottom: 14px;
+    padding: 15px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-transform: uppercase;
 }
 
-.search-input {
-    border: 3px solid #111;
-    border-radius: 6px;
+/* Buscador */
+.search-wrapper {
+    border: var(--border-thick);
+    border-radius: 50px;
     background: #fff;
-    padding: 6px 10px;
+    padding: 8px 20px;
     display: flex;
     align-items: center;
 }
 
-.search-input input {
-    border: 0;
-    outline: 0;
-    background: transparent;
+.search-wrapper input {
+    border: none;
+    outline: none;
     width: 100%;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Filtros */
+.filter-group .filter-label {
+    border: var(--border-thick);
+    border-right: none;
+    background: #fff;
+    padding: 6px 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 6px 0 0 6px;
 }
 
 .filter-btn {
-    border: 2px solid #111;
-    background: #fff;
-    font-weight: 600;
-    margin-left: 6px;
+    border: var(--border-thick);
+    background: #e0e0e0;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 0 6px 6px 0;
+    padding: 6px 12px;
 }
+.filter-btn:hover { background: #ccc; }
 
-/* Lista de catálogo: scroll solo aquí si hace falta */
+/* Lista de Items */
 .catalog-list {
-    overflow-y: auto;       /* scroll vertical interno */
-    padding-bottom: 18px;
-    max-height: calc(100vh - 160px); /* espacio para título/buscador (ajusta si cambias paddings) */
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Separación entre productos si no usas la línea divisoria */
 }
 
-/* Item styling */
 .catalog-item {
-    border-top: 6px solid #111;
-    padding: 16px 0;
+    /* La estructura interna se maneja con clases de Bootstrap en el HTML */
 }
 
-.name-box {
-    border: 3px solid #111;
-    padding: 6px;
-    text-align: center;
+/* Separador grueso entre items */
+.item-separator {
+    height: 6px;
+    background-color: #000;
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* Componentes del Item */
+.name-box, .meta-box, .desc-box, .image-box {
+    border: var(--border-thick);
     background: #fff;
+    width: 100%;
+}
+
+.name-box, .meta-box {
+    padding: 12px;
+    text-align: center;
     font-weight: 700;
 }
 
-.meta-box {
-    border: 2px solid #111;
-    padding: 6px;
-    background: #fff;
-}
+.name-box { font-size: 1.1rem; }
 
 .image-box {
-    border: 3px solid #111;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
-    padding: 6px;
-}
-
-.image-box img { 
-    max-width: 100%;
-    height: auto;
-    display: block;
+    min-height: 200px;
+    height: 100%;
 }
 
 .desc-box {
-    border: 3px solid #111;
-    padding: 10px;
-    background: #fff;
+    padding: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    flex-grow: 1; /* Ocupa el espacio sobrante */
 }
 
 .chat-btn {
     background: var(--accent-red);
     color: #fff;
-    border: none;
-    padding: 12px 10px;
-    font-weight: 700;
+    border: var(--border-thick);
+    padding: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
     width: 100%;
-    border-radius: 4px;
+    margin-top: 15px;
+    transition: transform 0.1s;
 }
+.chat-btn:active { transform: translate(2px, 2px); }
 
-/* RIGHT panel */
+/* --- BARRA LATERAL DERECHA (RIGHT) --- */
 .right-panel {
-    border-radius: 18px;
-    background: linear-gradient(180deg, var(--right-grad-a), var(--right-grad-b));
-    padding: 18px 10px;
+    background: linear-gradient(180deg, var(--right-grad-start), var(--right-grad-end));
+    padding: 20px 10px;
     color: #fff;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+    /* Bordes redondeados solo a la izquierda para efecto 'pestaña' */
+    border-radius: 20px 0 0 20px; 
+    border-left: var(--border-thick);
 }
 
-.avatar {
-    width: 64px;
-    height: 64px;
+.avatar-circle {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.9);
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #111;
-    font-weight: 700;
-    margin-bottom: 8px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
-.chev {
-    width: 36px;
-    height: 36px;
+.nav-arrow {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255,255,255,0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
-.profile-icon {
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
+.divider-line {
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    margin: 20px 0;
+}
+
+.profile-circle-bottom {
+    width: 80px;
+    height: 80px;
     background: #fff;
-    color: #111;
+    border: var(--border-thick);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 8px;
-    font-weight: 700;
-    margin-top: auto;
+    color: #000;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: auto; /* Empuja hacia abajo si hay espacio flex */
 }
 
-/* Responsive: ya NO convertimos la left-col a fila (evita scroll horizontal) */
+/* --- RESPONSIVE & STICKY LOGIC --- */
+
+/* Móvil y Tablet (ocultar barra derecha) */
 @media (max-width: 991.98px) {
-    .right-column { display: none; }
+    .right-col-wrapper { display: none; }
+    .left-block p { margin: 0; font-size: 1rem; }
 }
 
-@media (max-width: 575.98px) {
-    .left-block {
-        height: auto;
-        padding: 12px;
+/* Desktop (Pantallas grandes) */
+@media (min-width: 992px) {
+    
+    /* Configuración Sticky para Left */
+    .left-col {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        overflow-y: auto;
+        border-right: var(--border-thick);
+        padding-top: 30px;
     }
-    /* permitimos que el centro use todo el ancho sin crear overflows */
-    .center-card { padding-left: 12px; padding-right: 12px; }
+
+    /* Configuración Sticky para Right */
+    .right-panel {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        border-radius: 0; /* Recto en desktop */
+        padding-top: 30px;
+    }
+
+    /* Ajuste visual del grid */
+    .center-col {
+        padding: 30px;
+    }
 }

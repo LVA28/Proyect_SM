@@ -1,100 +1,125 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reparar catálogo</title>
+  <title>Reparar Catálogo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/professionalzone/repair_catalog.css">
 </head>
 
 <body>
   <div class="container-fluid p-0">
-    <div class="row gx-3 align-items-stretch">
+    <div class="row gx-0 main-row">
 
-      <!-- LEFT (3 cols) -->
-      <div class="col-12 col-lg-3 p-0">
-        <div class="left-col d-flex flex-column">
-          <div class="left-block">Para reparar: catálogo</div>
-          <div class="left-block">Mis productos</div>
-          <div class="left-block">MIS REPARACIONES</div>
-          <div class="left-block">Mis tutoriales</div>
-        </div>
+      <div class="col-12 col-lg-2">
+        <aside class="left-col">
+          <div class="left-block"><p>Para reparar: catálogo</p></div>
+          <div class="left-block"><p>Mis productos</p></div>
+          <div class="left-block"><p>MIS REPARACIONES</p></div>
+          <div class="left-block"><p>Mis tutoriales</p></div>
+        </aside>
       </div>
 
-      <!-- CENTER (7 cols) -->
-      <div class="col-12 col-lg-7 p-0">
-        <div class="center-card d-flex flex-column">
-          <div class="catalog-title">PARA REPARAR: CATÁLOGO</div>
-
-          <div class="d-flex flex-wrap align-items-center mb-3 gap-2 px-3">
-            <div class="flex-grow-1 search-input">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="me-2" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="7"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" placeholder="BUSCADOR POR TEXTO" aria-label="Buscar">
+      <div class="col-12 col-lg-9">
+        <main class="center-col">
+          
+          <div class="center-header">
+            <div class="catalog-title-box mb-4">
+              PARA REPARAR: CATÁLOGO
             </div>
 
-            <div class="d-flex">
-              <button class="btn filter-btn">Precio:</button>
-              <button class="btn filter-btn">Más alto</button>
-              <button class="btn filter-btn">Fecha:</button>
-              <button class="btn filter-btn">Más reciente</button>
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <div class="flex-grow-1 search-wrapper">
+                <input type="text" placeholder="BUSCADOR POR TEXTO" aria-label="Buscar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+
+              <div class="d-flex gap-3">
+                <div class="d-flex filter-group">
+                  <div class="filter-label">Precio:</div>
+                  <button class="btn filter-btn">Más alto</button>
+                </div>
+                <div class="d-flex filter-group">
+                  <div class="filter-label">Fecha:</div>
+                  <button class="btn filter-btn">Más reciente</button>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Lista con scroll interno si hace falta -->
-          <div class="catalog-list px-3 flex-grow-1">
-            <div class="catalog-item row align-items-center">
-              <div class="col-12 col-md-3 mb-3 mb-md-0">
-                <div class="name-box mb-2">Nombre</div>
-                <div class="meta-box mb-1">Precio</div>
-                <div class="meta-box">Localidad</div>
-              </div>
-
-              <div class="col-12 col-md-3 mb-3 mb-md-0">
-                <div class="image-box"><img src="../../resources/images/no_image.png" class="img-fluid" alt="sin imagen"></div>
-              </div>
-
-              <div class="col-12 col-md-3 mb-3 mb-md-0">
-                <div class="desc-box">DESCRIPCIÓN: Breve texto descriptivo sobre el producto, su estado y detalles importantes a mostrar en la ficha.</div>
-              </div>
-
-              <div class="col-12 col-md-3 d-flex flex-column align-items-stretch">
-                <div class="flex-grow-1"></div>
-                <button class="chat-btn">INICIAR CHAT</button>
+          <div class="catalog-list" id="catalog-container">
+            
+            <div class="catalog-item" >
+              <div class="row gx-3">
+                <div class="col-12 col-md-3 d-flex flex-column gap-2 mb-3 mb-md-0">
+                  <div class="name-box">Nombre del Producto</div>
+                  <div class="meta-box">120 €</div>
+                  <div class="meta-box">Madrid</div>
+                </div>
+                <div class="col-12 col-md-4 mb-3 mb-md-0">
+                  <div class="image-box">
+                    <span class="text-uppercase fw-bold">Primera Imagen</span>
+                  </div>
+                </div>
+                <div class="col-12 col-md-5 d-flex flex-column">
+                  <div class="desc-box">
+                    Descripción breve del problema a reparar o detalles del producto.
+                  </div>
+                  <button class="chat-btn">INICIAR CHAT</button>
+                </div>
               </div>
             </div>
+            
+            <div class="item-separator"></div>
 
-            <!-- repite items aquí -->
+             <div class="catalog-item">
+                <div class="row gx-3">
+                  <div class="col-12 col-md-3 d-flex flex-column gap-2 mb-3 mb-md-0">
+                    <div class="name-box">Otro Producto</div>
+                    <div class="meta-box">85 €</div>
+                    <div class="meta-box">Barcelona</div>
+                  </div>
+                  <div class="col-12 col-md-4 mb-3 mb-md-0">
+                    <div class="image-box">
+                      <span class="text-uppercase fw-bold">Imagen</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-5 d-flex flex-column">
+                    <div class="desc-box">
+                      Fallo en placa base. Necesito presupuesto urgente.
+                    </div>
+                    <button class="chat-btn">INICIAR CHAT</button>
+                  </div>
+                </div>
+              </div>
+
           </div>
-        </div>
+        </main>
       </div>
 
-      <!-- RIGHT (2 cols) -->
-      <div class="col-12 col-lg-2 right-column p-0">
-        <div class="right-panel d-flex flex-column">
-          <div style="height:6px"></div>
-          <div class="avatar">👤</div>
-          <div class="chev">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="col-12 col-lg-1 right-col-wrapper p-0">
+        <aside class="right-panel">
+          <div class="avatar-circle">👤</div>
+          <div class="nav-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </div>
+          
+          <div class="divider-line"></div>
 
-          <div class="w-100 my-3" style="height:1px;background:rgba(255,255,255,0.15)"></div>
-
-          <div class="profile-icon">Icono<br>del perfil</div>
-          <div style="height:10px"></div>
-        </div>
+          <div class="profile-circle-bottom">
+            Icono<br>perfil
+          </div>
+        </aside>
       </div>
 
     </div>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../../js/professionalzone/repair_catalog.js"></script>
 </body>
-
 </html>
