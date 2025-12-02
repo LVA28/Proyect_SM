@@ -1,4 +1,4 @@
-import * as D_P from "classes.js"
+import * as D_P from "../classes.js"
 
 'use strict'
 
