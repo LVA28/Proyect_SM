@@ -36,3 +36,20 @@
 {
     flex-grow: 1;
 }
+
+.search-bar
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-bar input
+{
+    width: 20vw;
+}
+
+.filters
+{
+    display: flex;
+    gap: 1.5rem;
+}

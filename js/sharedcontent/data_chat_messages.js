@@ -1,4 +1,4 @@
-import * as D_CM from "classes.js"
+// import * as D_CM from "classes.js"
 
 'use strict'
 
@@ -86,8 +86,8 @@ function generateRepairConversations() {
         let messageId = 1;
         
         // Technician is user 1, Customer is user 2
-        const technicianId = 100 + i;
-        const customerId = 200 + i;
+        const technicianId = 2;
+        const customerId = 1;
         
         // Adjust price slightly for variety (±20%)
         const priceVariation = gadget.basePrice * (0.8 + Math.random() * 0.4);

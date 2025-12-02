@@ -38,17 +38,18 @@ function getRandomId(elements)
 
 class User
 {
-    constructor(id, username, email, password)
+    constructor(id, username, email, password, profilePicture)
     {
         this.id = id
         this.username = username
         this.email = email
         this.password = password
+        this.profilePicture = profilePicture
     }
 
     static defaultUser()
     {
-        return new User(getRandomId(), "", "", "")
+        return new User(getRandomId(), "", "", "", "")
     }
 
 }
@@ -76,7 +77,7 @@ class Product
 
 class Tutorial
 {
-    constructor(id, userId, name, videoUrl, bannerUrl, description, tags, viewsCounter)
+    constructor(id, userId, name, videoUrl, bannerUrl, description, tags, viewsCounter, date)
     {
         this.id = id
         this.userId = userId
@@ -86,11 +87,12 @@ class Tutorial
         this.description = description
         this.tags = tags
         this.viewsCounter = viewsCounter
+        this.date = date
     }
 
     static defaultTutorial()
     {
-        return new Tutorial(getRandomId(), -1, "", "", "", "", [], 0)
+        return new Tutorial(getRandomId(), -1, "", "", "", "", [], 0, new Date())
     }
 }
 
