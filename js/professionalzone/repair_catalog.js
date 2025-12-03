@@ -1,5 +1,5 @@
 //Objeto: id, name, description, imageUrl, location, productTags, price, userId, interestedPersons
-import * as DP from "../sharedcontent/data_products"
+import * as DP from "../sharedcontent/data_products.js"
 
 let productos = DP.generateRandomProducts();
 
@@ -24,7 +24,7 @@ function insertarProducto(productos) {
 
         let divPrecio = document.createElement("div");
         divPrecio.className = "meta-box";
-        divPrecio.textContent = `${productos[i].price}`;
+        divPrecio.textContent = `${productos[i].price}€`;
 
         let divLugar = document.createElement("div");
         divLugar.className = "meta-box";
@@ -48,6 +48,11 @@ function insertarProducto(productos) {
 
         let btnChat = document.createElement("button");
         btnChat.className = "chat-btn";
+        btnChat.textContent = "INICIAR CHAT";
+        btnChat.onclick = iniciarChat;
+
+        div6.append(div7);
+        div6.append(btnChat);
         
         div5.append(divSpan);
         div4.append(div5);
@@ -58,20 +63,30 @@ function insertarProducto(productos) {
 
         div2.append(div3);
         div2.append(div4);
+        div2.append(div6);
 
         div1.append(div2);
         catalago.append(div1);
+
+        let separator = document.createElement("div");
+        separator.className = "item-separator";
+        catalago.append(separator);
     }
 }
 
 function limpiarPantalla() {
     let catalogo = document.getElementById("catalog-container");
-    catalogo.innerHTML = "";
-
+    if(catalogo){
+        catalogo.innerHTML = "";
+    }
 }
 
 function iniciarChat(){
     let a;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    insertarProducto(productos);
+});
 
 insertarProducto(productos);
