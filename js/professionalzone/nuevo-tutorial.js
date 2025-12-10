@@ -1,53 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Lógica para el botón de "Subir Video" ---
-    const uploadArea = document.getElementById('video-upload-area');
+    // Referencias
     const fileInput = document.getElementById('video-file');
-    
-    // Al hacer clic en la caja grande, activamos el input file oculto
-    uploadArea.addEventListener('click', () => {
-        fileInput.click();
-    });
+    const placeholder = document.getElementById('upload-placeholder');
+    const videoPreview = document.getElementById('video-preview');
+    const videoContainer = document.getElementById('video-container');
+    const btnChangeVideo = document.getElementById('btn-change-video');
+    const form = document.getElementById('tutorial-form');
 
-    // Cuando el usuario elige un archivo, cambiamos el texto de la caja
+    // 1. ESCUCHAR CAMBIOS EN EL INPUT
+    // Esto se activa automáticamente cuando eliges un archivo en la ventana
     fileInput.addEventListener('change', (e) => {
-        if (e.target.files.length > 0) {
-            const fileName = e.target.files[0].name;
-            uploadArea.innerHTML = `
-                <div class="text-center text-success">
-                    <span class="fs-1">🎥</span><br>
-                    <strong>${fileName}</strong><br>
-                    <small>Listo para subir</small>
-                </div>
-            `;
-            // Quitamos el borde discontinuo para indicar que ya está "lleno"
-            uploadArea.style.borderStyle = 'solid'; 
+        console.log("Archivo seleccionado..."); // Para depurar
+
+        const file = e.target.files[0];
+
+        if (file) {
+            console.log("Archivo detectado:", file.name);
+            
+            // Crear URL temporal para ver el video
+            const fileUrl = URL.createObjectURL(file);
+            videoPreview.src = fileUrl;
+            
+            // Gestión visual: Ocultar texto, mostrar video
+            placeholder.classList.add('d-none');     // Oculta el "+ INSERTAR"
+            videoPreview.classList.remove('d-none'); // Muestra el reproductor
+            btnChangeVideo.classList.remove('d-none'); // Muestra el botón de cambiar
+
+            // Cambiar estilo del borde a sólido
+            videoContainer.style.borderStyle = 'solid';
+            videoContainer.style.backgroundColor = 'black';
         }
     });
 
-
-    const form = document.getElementById('tutorial-form');
-
+    // 2. ENVIAR FORMULARIO
     form.addEventListener('submit', (e) => {
-        e.preventDefault(); // Evita que la página se recargue
+        e.preventDefault();
 
-        // Capturamos los datos
         const nombre = document.getElementById('video-name').value;
-        const descripcion = document.getElementById('video-desc').value;
-        const etiquetas = document.getElementById('video-tags').value;
         const video = fileInput.files[0];
 
-        // Validación simple
-        if (!nombre || !descripcion || !video) {
-            alert('XD');
+        if (!nombre || !video) {
+            alert('Falta el nombre o el vídeo.');
             return;
         }
 
-        // Simulación de éxito
-        console.log("Datos del Nuevo Tutorial:", { nombre, descripcion, etiquetas, videoName: video.name });
-        alert('¡Tutorial creado correctamente!');
-        
-        // Opcional: Redirigir a la lista de tutoriales
-        // window.location.href = 'mis-tutoriales.html';
+        alert(`¡Tutorial "${nombre}" subido con éxito!`);
+        // Aquí podrías redirigir: window.location.href = 'catalogo-tutoriales.html';
     });
 });

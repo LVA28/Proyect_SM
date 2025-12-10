@@ -18,21 +18,30 @@
             <div class="row mb-4">
                 
                 <div class="col-md-5 mb-4 mb-md-0">
-                    <div class="d-flex justify-content-center align-items-center h-100 border border-3 border-dark bg-light position-relative" 
-                         style="border-style: dashed !important; min-height: 300px; cursor: pointer;"
-                         id="video-upload-area">
+                    
+                    <input type="file" id="video-file" accept="video/*" class="d-none">
+
+                    <div id="video-container" class="bg-light position-relative d-flex justify-content-center align-items-center" 
+                         style="border: 3px dashed black; height: 300px; overflow: hidden;">
                         
-                        <div class="text-center">
+                        <label for="video-file" id="upload-placeholder" class="w-100 h-100 d-flex flex-column justify-content-center align-items-center" style="cursor: pointer;">
                             <span class="fs-4 fw-bold">+ INSERTAR VIDEO</span>
-                            <p class="text-muted small mt-2">(Clic para subir archivo)</p>
-                        </div>
+                            <p class="text-muted small mt-2 mb-0">(Clic para subir archivo)</p>
+                        </label>
+
+                        <video id="video-preview" class="d-none w-100 h-100 bg-black" controls></video>
                         
-                        <input type="file" id="video-file" accept="video/*" style="display: none;">
                     </div>
+
+                    <div class="text-center mt-2">
+                        <label for="video-file" id="btn-change-video" class="btn btn-link text-dark text-decoration-none d-none" style="cursor: pointer;">
+                            <small>↻ Cambiar vídeo</small>
+                        </label>
+                    </div>
+
                 </div>
 
                 <div class="col-md-7 d-flex flex-column gap-3">
-                    
                     <div>
                         <label for="video-name" class="form-label fs-5">Nombre del vídeo:</label>
                         <input type="text" class="form-control border-2 border-dark p-2" id="video-name">
@@ -47,7 +56,6 @@
                         <label for="video-tags" class="form-label fs-5">Etiquetas:</label>
                         <input type="text" class="form-control border-2 border-dark p-2" id="video-tags">
                     </div>
-
                 </div>
             </div>
 
