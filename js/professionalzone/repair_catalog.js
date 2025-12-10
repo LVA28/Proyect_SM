@@ -4,11 +4,11 @@
 // let productos = DP.generateRandomProducts();
 // let productos = generateRandomProducts();    
 
-
 function insertarProducto(productos) {
     limpiarPantalla();
 
     let catalago = document.getElementById("catalog-container");
+    console.log(productos.length)
     for (let i = 0; i < productos.length; i++) {
         let div1 = document.createElement("div");
         div1.className = "catalog-item";
@@ -88,6 +88,7 @@ function iniciarChat(){
 
 function onLoadCatalogo()
 {
+    let productos = JSON.parse(sessionStorage.getItem("repairings"))
     insertarProducto(productos);
 }
 

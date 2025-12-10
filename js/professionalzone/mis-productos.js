@@ -1,33 +1,4 @@
 // Simulación de datos: Productos artesanales y locales
-let productsData = [
-    {
-        id: 1,
-        name: "Mesa de Roble Restaurada",
-        price: "120€",
-        location: "Madrid",
-        tags: ["Muebles", "Upcycling", "Pieza única"],
-        description: "Mesa de centro antigua recuperada, tratada con barniz ecológico y patas de hierro forjado.",
-        date: "2023-11-10" 
-    },
-    {
-        id: 2,
-        name: "Pack Jabones de Lavanda",
-        price: "18€",
-        location: "Valencia",
-        tags: ["Cosmética", "Vegano", "Km 0"],
-        description: "Set de 3 jabones artesanales hechos en frío con aceite de oliva virgen y lavanda de la zona.",
-        date: "2023-12-05"
-    },
-    {
-        id: 3,
-        name: "Jarrón Cerámica 'Azul'",
-        price: "45€",
-        location: "Sevilla",
-        tags: ["Decoración", "Hecho a mano", "Cerámica"],
-        description: "Jarrón torneado a mano y esmaltado en azul cobalto. Ideal para flores secas o decoración.",
-        date: "2023-10-28" 
-    }
-];
 
 function createProductCard(product) {
     const card = document.createElement('div');
@@ -101,7 +72,7 @@ function createProductCard(product) {
 /**
 Función principal para renderizar
  */
-function renderProductCards() {
+function renderProductCards(productsData) {
     const container = document.getElementById('products-cards-container');
     if (container) {
         container.innerHTML = '';
@@ -157,9 +128,11 @@ function updateLabel(btnId, text) {
     document.getElementById(btnId).textContent = text;
 }
 
+
 // Inicialización
 function onLoadMisProductos()
 {
-    renderProductCards();
+    let productsData = JSON.parse(sessionStorage.getItem("myproducts"))
+    renderProductCards(productsData);
     setupSortListeners();
 }

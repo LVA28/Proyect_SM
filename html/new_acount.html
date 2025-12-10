@@ -103,7 +103,8 @@
             // Si todos los campos son válidos, redirigir
             if (isValid) {
                 // Redireccionar al archivo inicio.html
-                window.location.href = 'inicio.html'; 
+                sessionStorage.setItem("username", usernameInput.value)
+                window.location.href = "../html/clientzone/inicio-cliente.html"; 
             }
         });
     </script>

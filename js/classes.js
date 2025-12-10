@@ -98,18 +98,19 @@ class Tutorial
 
 class ChatMessage
 {
-    constructor(id, userId, date, content)
+    constructor(id, userId, chatId, date, content)
     {
         this.id = id
         this.userId = userId
+        this.chatId = chatId
         this.date = date
         this.content = content
     }
 
-    static defaultChatMessage()
-    {
-        return new ChatMessage(getRandomId(), -1, new Date(), "")
-    }
+    // static defaultChatMessage()
+    // {
+    //     return new ChatMessage(getRandomId(), -1, new Date(), "")
+    // }
 }
 
 class RepairApplication

@@ -1,5 +1,8 @@
 const loadedScripts = new Set();
 
+const USERS_COUNT = 10;
+
+
 function loadContent(target, clickedButton, id) {
     const main = document.getElementById('main-content');
     const navButtons = document.querySelectorAll('#sidebar-nav a[data-target]');

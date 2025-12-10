@@ -1,41 +1,41 @@
 'use strict';
 
 // Simulación de datos de reparación
-const repairData = [
-    new RepairApplication(
-        101,
-        1,
-        "Arreglo de Fuga en Tubería",
-        0, // price
-        "placeholder", // imageUrl
-        "Madrid", // location
-        "Necesito un fontanero urgente para una pequeña fuga en el baño.",
-        ["Fontanería", "Urgente", "24h"],
-        [2, 3] // interestedPersons
-    ),
-    new RepairApplication(
-        102,
-        1,
-        "Pintar Salón y Habitación",
-        0,
-        "placeholder",
-        "Barcelona",
-        "Pintar paredes y techo de salón (30m2) y una habitación (12m2).",
-        ["Pintura", "Interior"],
-        [4]
-    ),
-    new RepairApplication(
-        103,
-        1,
-        "Instalación de Enchufe Doble",
-        0,
-        "placeholder",
-        "Valencia",
-        "Añadir un nuevo punto de electricidad en la cocina.",
-        ["Electricidad"],
-        [] // nadie interesado
-    )
-];
+// const repairData = [
+//     new RepairApplication(
+//         101, //id
+//         1, //userId
+//         "Arreglo de Fuga en Tubería", //title
+//         0, // price
+//         "placeholder", // imageUrl
+//         "Madrid", // location
+//         "Necesito un fontanero urgente para una pequeña fuga en el baño.", //description
+//         ["Fontanería", "Urgente", "24h"], //tags
+//         [2, 3] // interestedPersons
+//     ),
+//     new RepairApplication(
+//         102,
+//         1,
+//         "Pintar Salón y Habitación",
+//         0,
+//         "placeholder",
+//         "Barcelona",
+//         "Pintar paredes y techo de salón (30m2) y una habitación (12m2).",
+//         ["Pintura", "Interior"],
+//         [4]
+//     ),
+//     new RepairApplication(
+//         103,
+//         1,
+//         "Instalación de Enchufe Doble",
+//         0,
+//         "placeholder",
+//         "Valencia",
+//         "Añadir un nuevo punto de electricidad en la cocina.",
+//         ["Electricidad"],
+//         [] // nadie interesado
+//     )
+// ];
 
 /**
  * Función para crear el elemento HTML de una tarjeta de reparación.
@@ -128,7 +128,7 @@ function createRepairCard(application) {
 /**
  * Función principal para renderizar todas las aplicaciones de reparación.
  */
-function renderRepairCards() {
+function renderRepairCards(repairData) {
     const container = document.getElementById('repair-cards-container');
     if (container) {
         // Limpiar el contenedor
@@ -147,5 +147,6 @@ function renderRepairCards() {
 
 function onLoadMisReparaciones()
 {
-    renderRepairCards();
+    let repairData = JSON.parse(sessionStorage.getItem("myrepairs"))
+    renderRepairCards(repairData);
 }

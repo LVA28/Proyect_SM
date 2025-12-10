@@ -1,63 +1,6 @@
 'use strict'
 
 
-const tutorials = [
-    new Tutorial(
-        1,
-        101,
-        "Juan Pérez",
-        "https://www.youtube.com/watch?v=abc123",
-        "https://via.placeholder.com/400x200?text=JavaScript",
-        "Curso completo de JavaScript desde cero.",
-        ["JavaScript", "Web", "Frontend"],
-        1250,
-        new Date(2024, 10, 15)
-    ),
-    new Tutorial(
-        2,
-        102,
-        "Ana Gómez",
-        "https://www.youtube.com/watch?v=def456",
-        "https://via.placeholder.com/400x200?text=HTML+CSS",
-        "Aprende HTML y CSS creando tu primera web.",
-        ["HTML", "CSS", "Diseño"],
-        980,
-        new Date(2023, 5, 20, 14, 30, 0)
-    ),
-    new Tutorial(
-        3,
-        103,
-        "Carlos Ruiz",
-        "https://www.youtube.com/watch?v=ghi789",
-        "https://via.placeholder.com/400x200?text=React",
-        "Introducción práctica a React con ejemplos reales.",
-        ["React", "JavaScript", "SPA"],
-        2100,
-        new Date(2022, 10, 15)
-    ),
-    new Tutorial(
-        4,
-        104,
-        "Laura Martínez",
-        "https://www.youtube.com/watch?v=jkl012",
-        "https://via.placeholder.com/400x200?text=NodeJS",
-        "Backend con Node.js y Express desde cero.",
-        ["NodeJS", "Backend", "API"],
-        1560,
-        new Date(2024, 8, 5)
-    ),
-    new Tutorial(
-        5,
-        105,
-        "Miguel Torres",
-        "https://www.youtube.com/watch?v=mno345",
-        "https://via.placeholder.com/400x200?text=SQL",
-        "Bases de datos SQL para principiantes.",
-        ["SQL", "Bases de datos", "Backend"],
-        870,
-        new Date(2023, 1, 2)
-    )
-];
 
 let searchInput;
 let filterViews;
@@ -71,6 +14,8 @@ let container;
 let visualTutorials = [];
 
 function onLoadMisTutoriales() {
+    let tutorials = JSON.parse(sessionStorage.getItem("mytutorials"))
+
     visualTutorials = tutorials;
     container = document.querySelector('.tutorials-header-container');
     filterViews = document.querySelector('#filter-by-views')

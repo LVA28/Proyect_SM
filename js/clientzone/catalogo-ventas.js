@@ -1,33 +1,3 @@
-// 1. Datos del Catálogo (Consumo local / Artesanía)
-let salesData = [
-    {
-        id: 101,
-        name: "Lámpara de Pie Vintage",
-        price: "85€",
-        location: "Madrid",
-        tags: ["Decoración", "Segunda vida", "Vintage"],
-        description: "Lámpara de los años 70 restaurada. Cableado nuevo. Pieza única ideal para salón.",
-        date: "2023-11-20" 
-    },
-    {
-        id: 102,
-        name: "Cesta de Mimbre Grande",
-        price: "35€",
-        location: "Toledo",
-        tags: ["Artesanía", "Hecho a mano", "Local"],
-        description: "Cesta tejida a mano con fibras naturales de la zona. Muy resistente y ecológica.",
-        date: "2023-12-01"
-    },
-    {
-        id: 103,
-        name: "Juego de Tazas Cerámica",
-        price: "50€",
-        location: "Barcelona",
-        tags: ["Cerámica", "Cocina", "Regalo"],
-        description: "Set de 4 tazas pintadas a mano con motivos florales. Aptas para lavavajillas.",
-        date: "2023-10-15" 
-    }
-];
 
 // 2. Función para crear la tarjeta (Estructura de 3 columnas del wireframe)
 function createSaleCard(product) {
@@ -96,7 +66,7 @@ function createSaleCard(product) {
 }
 
 // 3. Renderizado
-function renderSalesCards() {
+function renderSalesCards(salesData) {
     const container = document.getElementById('sales-cards-container');
     if (container) {
         container.innerHTML = '';
@@ -146,7 +116,8 @@ function setupSortListeners() {
 
 function onLoadCatalogoDeObjetosALaVenta() {
     // Inicialización
-    renderSalesCards();
+    let salesData = JSON.parse(sessionStorage.getItem("products"))
+    renderSalesCards(salesData);
     setupSortListeners();
 }
 

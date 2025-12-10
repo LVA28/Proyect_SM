@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../css/clientzone/chat.css" rel='stylesheet' type='text/css'>
+    <title>Chat</title>
+</head>
+<body>
+    <main>
+        <h1>Chat con <span class="chatter-name"></span></h1>
+
+        <div class="chat-container">
+            <div class="messages-container">
+
+            </div>
+            <div class="message-editor">
+                <input type="text" id="message-input">
+                <button id="send-button">Enviar</button >
+            </div>
+        </div>
+    </main>
+
+    <template id="message-template">
+        <div class="message">
+            <img class="user-image">
+            <div class="info">
+                <p class="content"></p>
+                <p class="date"></p>
+            </div>
+        </div>
+    </template>
+
+    <script src="../../js/classes.js"></script>
+        <script src="../../js/clientzone/chat.js"></script>
+        <script src="../../js/sharedcontent/data_chat_messages.js"></script>
+</body>
+</html>
