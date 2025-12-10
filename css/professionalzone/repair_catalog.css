@@ -1,0 +1,300 @@
+:root {
+    --accent-red: #ff4747;
+    --border-thick: 3px solid #000;
+    --bg-gray-hover: #f0f0f0;
+    --right-grad-start: #5cdb6d;
+    --right-grad-end: #42b983;
+}
+
+/* --- BASE & RESET --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif; /* O la fuente que uses */
+}
+
+/* Evita desbordes horizontales */
+body {
+    overflow-x: hidden;
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+.main-row {
+    min-height: 100vh; /* Asegura que la fila ocupe toda la pantalla */
+}
+
+/* --- BARRA LATERAL IZQUIERDA (LEFT) --- */
+.left-col {
+    /* En Desktop forzamos altura completa y quitamos paddings internos */
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    height: 100vh; /* Ocupa toda la pantalla */
+    padding: 0;    /* ELIMINADO: Quitamos padding para que los bordes toquen los extremos */
+    
+    /* Borde derecho para separar del contenido central */
+    border-right: var(--border-thick); 
+    
+    /* Sticky para que se mantenga fija al bajar */
+    position: sticky; 
+    top: 0;
+}
+
+.left-block {
+    /* CLAVE 1: flex: 1 hace que se estiren para llenar todo el espacio vertical disponible */
+    flex: 1; 
+    
+    /* CLAVE 2: Quitamos márgenes para que se peguen unos a otros */
+    margin: 0; 
+    
+    /* Centrado del texto perfecto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* Estilos visuales */
+    background: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.3rem; /* Ajusta el tamaño de letra según necesites */
+    padding: 10px;     /* Espacio interno para que el texto no toque el borde */
+    
+    /* Borde: Usamos borde negro grueso */
+    border: var(--border-thick);
+    
+    /* TRUCO VISUAL: Evitar bordes dobles donde se juntan los bloques */
+    /* Hacemos que cada bloque suba 3px para superponerse al borde del anterior */
+    margin-top: -3px; 
+}
+
+.left-block:first-child {
+    margin-top: 0;
+    border-top: none; /* Opcional: Si el contenedor padre ya tiene borde arriba o está pegado al techo */
+}
+
+.left-block:last-child {
+    margin-bottom: 0;
+}
+
+.left-block:hover {
+    z-index: 1; /* Asegura que el borde se vea bien al pasar el mouse */
+}
+
+/* --- CONTENIDO CENTRAL (CENTER) --- */
+.center-col {
+    display: flex;
+    flex-direction: column;
+    /* En móvil el padding es menor, en desktop se ajusta solo */
+}
+
+.center-header {
+    margin-bottom: 2rem;
+}
+
+/* Título */
+.catalog-title-box {
+    border: var(--border-thick);
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Buscador */
+.search-wrapper {
+    border: var(--border-thick);
+    border-radius: 50px;
+    background: #fff;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.search-wrapper input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Filtros */
+.filter-group .filter-label {
+    border: var(--border-thick);
+    border-right: none;
+    background: #fff;
+    padding: 6px 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 6px 0 0 6px;
+}
+
+.filter-btn {
+    border: var(--border-thick);
+    background: #e0e0e0;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 0 6px 6px 0;
+    padding: 6px 12px;
+}
+.filter-btn:hover { background: #ccc; }
+
+/* Lista de Items */
+.catalog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Separación entre productos si no usas la línea divisoria */
+}
+
+.catalog-item {
+    /* La estructura interna se maneja con clases de Bootstrap en el HTML */
+}
+
+/* Separador grueso entre items */
+.item-separator {
+    height: 6px;
+    background-color: #000;
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* Componentes del Item */
+.name-box, .meta-box, .desc-box, .image-box {
+    border: var(--border-thick);
+    background: #fff;
+    width: 100%;
+}
+
+.name-box, .meta-box {
+    padding: 12px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.name-box { font-size: 1.1rem; }
+
+.image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    height: 100%;
+}
+
+.desc-box {
+    padding: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    flex-grow: 1; /* Ocupa el espacio sobrante */
+}
+
+.chat-btn {
+    background: var(--accent-red);
+    color: #fff;
+    border: var(--border-thick);
+    padding: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 15px;
+    transition: transform 0.1s;
+}
+.chat-btn:active { transform: translate(2px, 2px); }
+
+/* --- BARRA LATERAL DERECHA (RIGHT) --- */
+.right-panel {
+    background: linear-gradient(180deg, var(--right-grad-start), var(--right-grad-end));
+    padding: 20px 10px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    /* Bordes redondeados solo a la izquierda para efecto 'pestaña' */
+    border-radius: 20px 0 0 20px; 
+    border-left: var(--border-thick);
+}
+
+.avatar-circle {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.nav-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider-line {
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    margin: 20px 0;
+}
+
+.profile-circle-bottom {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border: var(--border-thick);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #000;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: auto; /* Empuja hacia abajo si hay espacio flex */
+}
+
+/* --- RESPONSIVE & STICKY LOGIC --- */
+
+/* Móvil y Tablet (ocultar barra derecha) */
+@media (max-width: 991.98px) {
+    .right-col-wrapper { display: none; }
+    .left-block p { margin: 0; font-size: 1rem; }
+}
+
+/* Desktop (Pantallas grandes) */
+@media (min-width: 992px) {
+    
+    /* Configuración Sticky para Left */
+    .left-col {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        overflow-y: auto;
+        border-right: var(--border-thick);
+        padding-top: 30px;
+    }
+
+    /* Configuración Sticky para Right */
+    .right-panel {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        border-radius: 0; /* Recto en desktop */
+        padding-top: 30px;
+    }
+
+    /* Ajuste visual del grid */
+    .center-col {
+        padding: 30px;
+    }
+}

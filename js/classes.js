@@ -1,6 +1,6 @@
 'use strict'
 
-function getInterestedUsers(element, users)
+export function getInterestedUsers(element, users)
 {
     let interestedUsers = []
 
@@ -15,12 +15,12 @@ function getInterestedUsers(element, users)
     return interestedUsers
 }
 
-function getUsers(element, users) 
+export function getUsers(element, users) 
 {
     return getUserById(element.userId, users)
 }
 
-function getUserById(id, users)
+export function getUserById(id, users)
 {
     for(let i = 0; i < users.length; i++)
     {
@@ -31,29 +31,30 @@ function getUserById(id, users)
 }
 
 
-function getRandomId(elements)
+export function getRandomId(elements)
 {
     return !elements || elements.length === 0 ? Math.floor(Math.random() * 1000) : Math.max(...elements) + 1
 }
 
-class User
+export class User
 {
-    constructor(id, username, email, password)
+    constructor(id, username, email, password, profilePicture)
     {
         this.id = id
         this.username = username
         this.email = email
         this.password = password
+        this.profilePicture = profilePicture
     }
 
     static defaultUser()
     {
-        return new User(getRandomId(), "", "", "")
+        return new User(getRandomId(), "", "", "", "")
     }
 
 }
 
-class Product
+export class Product
 {
     constructor(id, name, description, imageUrl, location, tags, price, userId, interestedPersons)
     {
@@ -74,9 +75,9 @@ class Product
     }
 }
 
-class Tutorial
+export class Tutorial
 {
-    constructor(id, userId, name, videoUrl, bannerUrl, description, tags, viewsCounter)
+    constructor(id, userId, name, videoUrl, bannerUrl, description, tags, viewsCounter, date)
     {
         this.id = id
         this.userId = userId
@@ -86,15 +87,16 @@ class Tutorial
         this.description = description
         this.tags = tags
         this.viewsCounter = viewsCounter
+        this.date = date
     }
 
     static defaultTutorial()
     {
-        return new Tutorial(getRandomId(), -1, "", "", "", "", [], 0)
+        return new Tutorial(getRandomId(), -1, "", "", "", "", [], 0, new Date())
     }
 }
 
-class ChatMessage
+export class ChatMessage
 {
     constructor(id, userId, date, content)
     {
@@ -110,7 +112,7 @@ class ChatMessage
     }
 }
 
-class RepairApplication
+export class RepairApplication
 {
     constructor(id, userId, name, price, imageUrl, location, description, tags, interestedPersons)
     {

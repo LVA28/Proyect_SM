@@ -1,6 +1,6 @@
-import * as D_U from "classes.js"
+import * as D_P from "../classes.js"
 
-'use strict'
+//'use strict'
 
 document.addEventListener('DOMContentLoader', () =>{
 
@@ -12,7 +12,7 @@ function getRandomId() {
 }
 
 // Function to generate 75 coherent random products
-function generateRandomProducts() {
+export function generateRandomProducts() {
     const productNames = [
         "Smartphone", "Laptop", "Headphones", "Camera", "Tablet", 
         "Smart Watch", "Gaming Console", "Bluetooth Speaker", "Monitor", 
@@ -114,7 +114,7 @@ function generateRandomProducts() {
             interestedPersons.push(Math.floor(Math.random() * 100) + 1);
         }
         
-        const product = new Product(
+        const product = new D_P.Product(
             getRandomId(),
             name,
             description,

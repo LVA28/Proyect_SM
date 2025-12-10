@@ -1,0 +1,55 @@
+:root, body
+{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main-content
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin: 1rem;
+}
+
+.tutorial-header
+{
+    display: flex;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.tutorial-info
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.tutorial-first-row
+{
+    display: flex;
+    gap: 1rem;
+}
+
+.tutorial-description
+{
+    flex-grow: 1;
+}
+
+.search-bar
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-bar input
+{
+    width: 20vw;
+}
+
+.filters
+{
+    display: flex;
+    gap: 1.5rem;
+}
