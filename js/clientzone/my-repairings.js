@@ -37,9 +37,6 @@ const repairData = [
 
 
 
-document.addEventListener('DOMContentLoaded', () =>{
-    renderRepairList(repairData, document.querySelector('.reparing-container'))
-})
 
 // 1. Recibe una lista de reparaciones y un container
 function renderRepairList(repairList, container) {
@@ -49,7 +46,6 @@ function renderRepairList(repairList, container) {
         renderSingleRepair(repair, container);
     });
 }
-let a;
 
 // 2. Recibe una sola reparación y un container
 function renderSingleRepair(repair, container) {
@@ -78,13 +74,18 @@ function renderSingleRepair(repair, container) {
     const deleteButton = clone.querySelector(".delete-button");
     deleteButton.addEventListener("click", (e) => {
         e.stopPropagation();
-        alert("TODO!!")
+        alert("TODO!!");
     });
 
     clone.querySelector('.repairing-header').addEventListener('click', () =>{
-        alert("TODO2!!")
+        loadContent("resumen-reparacion.html", null, "")
     })
 
     // Insertar en el container
     container.appendChild(clone);
+}
+
+function onLoadMisSolicitudesDeReparaciones()
+{
+    renderRepairList(repairData, document.querySelector('.reparing-container'))
 }

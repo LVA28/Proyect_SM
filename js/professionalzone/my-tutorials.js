@@ -70,7 +70,7 @@ let container;
 
 let visualTutorials = [];
 
-document.addEventListener('DOMContentLoaded', () => {
+function onLoadMisTutoriales() {
     visualTutorials = tutorials;
     container = document.querySelector('.tutorials-header-container');
     filterViews = document.querySelector('#filter-by-views')
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInput = document.querySelector('.search-input')
     document.querySelector('#add-new-button').addEventListener('click', () =>{
-        alert("TODO!!")
+        loadContent("nuevo-tutorial.html", null, "")
     })
     searchInput.addEventListener('keydown', (e) =>{
         if (e.key == "Enter" && searchInput.value !== lastSearchValue)
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     renderTutorialList(tutorials, container)
-})
+}
 
 function orderTutorialsByViews(descendent = true) {
   return [...visualTutorials].sort((a, b) => {
@@ -167,7 +167,7 @@ function renderSingleTutorial(tutorial, container) {
     const tutorialElement = clone.querySelector(".tutorial-header");
 
     tutorialElement.addEventListener("click", () => {
-        alert("TODO!!")
+        loadContent("nuevo-tutorial.html", null, "")
     });
 
     const img = clone.querySelector(".tutorial-image");

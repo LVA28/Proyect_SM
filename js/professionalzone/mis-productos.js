@@ -158,7 +158,8 @@ function updateLabel(btnId, text) {
 }
 
 // Inicialización
-document.addEventListener('DOMContentLoaded', () => {
+function onLoadMisProductos()
+{
     renderProductCards();
     setupSortListeners();
-});
+}

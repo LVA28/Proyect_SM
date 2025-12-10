@@ -1,7 +1,8 @@
 //Objeto: id, name, description, imageUrl, location, productTags, price, userId, interestedPersons
-import * as DP from "../sharedcontent/data_products.js"
+// import * as DP from "../sharedcontent/data_products.js"
 
-let productos = DP.generateRandomProducts();
+// let productos = DP.generateRandomProducts();
+// let productos = generateRandomProducts();    
 
 
 function insertarProducto(productos) {
@@ -82,11 +83,15 @@ function limpiarPantalla() {
 }
 
 function iniciarChat(){
-    let a;
+    loadContent("chat.html", null, "")
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function onLoadCatalogo()
+{
     insertarProducto(productos);
-});
+}
 
-insertarProducto(productos);
+// document.addEventListener('DOMContentLoaded', () => {
+    // insertarProducto(productos);
+// });
+

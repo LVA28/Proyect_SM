@@ -55,13 +55,6 @@ const tutorials = [
     )
 ];
 
-document.addEventListener('DOMContentLoaded', () => 
-{
-    template = document.querySelector('#tutorial-header-template')
-    consloe.log("nsns")
-    loadTutorialsHeaders(document.querySelector('.tutorials-container'), tutorials)
-})
-
 function loadTutorialsHeaders(container, tutorials)
 {
     tutorials.forEach(n => loadTutorialHeader(container, n))
@@ -71,7 +64,7 @@ function loadTutorialHeader(container, tutorial)
 {
     const template = createTutorialHeader(tutorial)
     template.querySelector('.tutorial-header').addEventListener('click', () =>{
-        alert("tODO!!")
+        loadContent("nuevo-tutorial.html", null, "")
     })
 
     container.appendChild(template)
@@ -92,3 +85,10 @@ function createTutorialHeader(tutorial)
     })
     return copy
 }
+
+function onLoadCatalogoDeTutoriales()
+{
+    template = document.querySelector('#tutorial-header-template')
+    loadTutorialsHeaders(document.querySelector('.tutorials-container'), tutorials)
+}
+

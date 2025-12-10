@@ -144,8 +144,9 @@ function setupSortListeners() {
     });
 }
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', () => {
+function onLoadCatalogoDeObjetosALaVenta() {
+    // Inicialización
     renderSalesCards();
     setupSortListeners();
-});
+}
+

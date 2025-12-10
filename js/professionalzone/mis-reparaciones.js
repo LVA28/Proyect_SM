@@ -111,9 +111,9 @@ function createRepairCard(application) {
     chatButton.type = 'button';
 
     // Aquí podrías añadir un listener para ir al chat
-    // chatButton.addEventListener('click', () => {
-    //     // lógica para abrir el chat de esta reparación
-    // });
+    chatButton.addEventListener('click', () => {
+        loadContent("chat.html", null, "")
+    });
 
     chatButtonContainer.appendChild(chatButton);
 
@@ -143,4 +143,9 @@ function renderRepairCards() {
 }
 
 // Ejecutar la función cuando el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', renderRepairCards);
+// document.addEventListener('DOMContentLoaded', renderRepairCards);
+
+function onLoadMisReparaciones()
+{
+    renderRepairCards();
+}

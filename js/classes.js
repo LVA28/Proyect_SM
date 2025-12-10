@@ -1,6 +1,6 @@
 'use strict'
 
-export function getInterestedUsers(element, users)
+function getInterestedUsers(element, users)
 {
     let interestedUsers = []
 
@@ -15,12 +15,12 @@ export function getInterestedUsers(element, users)
     return interestedUsers
 }
 
-export function getUsers(element, users) 
+function getUsers(element, users) 
 {
     return getUserById(element.userId, users)
 }
 
-export function getUserById(id, users)
+function getUserById(id, users)
 {
     for(let i = 0; i < users.length; i++)
     {
@@ -31,12 +31,12 @@ export function getUserById(id, users)
 }
 
 
-export function getRandomId(elements)
+function getRandomId(elements)
 {
     return !elements || elements.length === 0 ? Math.floor(Math.random() * 1000) : Math.max(...elements) + 1
 }
 
-export class User
+class User
 {
     constructor(id, username, email, password, profilePicture)
     {
@@ -54,7 +54,7 @@ export class User
 
 }
 
-export class Product
+class Product
 {
     constructor(id, name, description, imageUrl, location, tags, price, userId, interestedPersons)
     {
@@ -75,7 +75,7 @@ export class Product
     }
 }
 
-export class Tutorial
+class Tutorial
 {
     constructor(id, userId, name, videoUrl, bannerUrl, description, tags, viewsCounter, date)
     {
@@ -96,7 +96,7 @@ export class Tutorial
     }
 }
 
-export class ChatMessage
+class ChatMessage
 {
     constructor(id, userId, date, content)
     {
@@ -112,7 +112,7 @@ export class ChatMessage
     }
 }
 
-export class RepairApplication
+class RepairApplication
 {
     constructor(id, userId, name, price, imageUrl, location, description, tags, interestedPersons)
     {
