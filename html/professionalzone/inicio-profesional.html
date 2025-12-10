@@ -4,65 +4,53 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Reparar Catálogo</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../css/professionalzone/repair_catalog.css">
-
     <style>
-        html, body {
-            height: 100%;
-            overflow: hidden;
-        }
-
-        main {
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        #main-content {
-            height: 100%;
-            overflow-y: auto;
-        }
-
-        aside {
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Estilo botón activo */
-        #sidebar-nav a.active {
-            background-color: #495057 !important; /* fondo más oscuro */
-            font-weight: bold; /* texto en negrita */
+        html, body { height: 100%; overflow: hidden; }
+        main { height: 100vh; overflow: hidden; }
+        #main-content { height: 100%; overflow-y: auto; }
+        aside { height: 100vh; overflow: hidden; }
+        #sidebar-nav a.active { background-color: #495057 !important; font-weight: bold; }
+        .profile-circle {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background-color: white;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 1.1;
+            padding: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
-
 <body>
     <div class="container-fluid p-0">
         <div class="row gx-0 main-row min-vh-100">
-
             <aside class="col-12 col-lg-2 bg-dark text-white p-0 position-sticky top-0">
                 <div id="sidebar-nav" class="list-group list-group-flush h-100 d-flex flex-column justify-content-between">
-
                     <a href="#" id="btn-catalogo" data-target="repair_catalog.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary text-center d-flex align-items-center justify-content-center flex-fill">
                         <h5 class="mb-0 fw-bold">Para reparar: Catálogo</h5>
                     </a>
-
                     <a href="#" id="btn-productos" data-target="mis-productos.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary text-center d-flex align-items-center justify-content-center flex-fill">
                         <h5 class="mb-0">Mis productos</h5>
                     </a>
-
                     <a href="#" id="btn-reparaciones" data-target="mis-reparaciones.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary text-center d-flex align-items-center justify-content-center flex-fill">
                         <h5 class="mb-0">Mis reparaciones</h5>
                     </a>
-
                     <a href="#" id="btn-tutoriales" data-target="my-tutorials.html" class="list-group-item list-group-item-action bg-dark text-white text-center d-flex align-items-center justify-content-center flex-fill">
                         <h5 class="mb-0">Mis tutoriales</h5>
                     </a>
-
                 </div>
             </aside>
-
             <main class="col-12 col-lg-9 p-0 bg-light">
                 <div id="main-content" class="p-4">
                     <div class="d-flex justify-content-center align-items-center h-100 text-muted">
@@ -70,59 +58,46 @@
                     </div>
                 </div>
             </main>
-
             <aside id="right-bar" class="col-12 col-lg-1 p-0 bg-primary text-white position-sticky top-0">
-                <div class="d-flex flex-column align-items-center h-100 py-3">
-                    <div class="rounded-circle bg-light text-dark p-3 mb-4 mt-2 shadow-sm fs-4 d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
-                        👤
-                    </div>
-
+                <div class="d-flex flex-column align-items-center h-100 py-3 justify-content-start">
+                    <div class="rounded-circle bg-light text-dark p-3 mb-4 mt-2 shadow-sm fs-4 d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">👤</div>
                     <div class="p-2 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </div>
-
                     <div class="w-75 border-bottom border-2 border-light opacity-50 mb-4"></div>
-
-                    <div class="mt-auto text-center small text-uppercase fw-bold">
-                        Icono<br>perfil
+                    <div class="mt-auto text-center">
+                        <a href="../perfil.html" id="profile-link" class="text-decoration-none">
+                            <div class="profile-circle">PERFIL</div>
+                        </a>
                     </div>
                 </div>
             </aside>
-
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="../../../js/professionalzone/repair_catalog.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const main = document.getElementById('main-content');
             const navButtons = document.querySelectorAll('#sidebar-nav a[data-target]');
 
-            // Función para cargar contenido en #main-content
             function loadContent(target, clickedButton) {
                 main.innerHTML = '<p class="text-center text-muted p-5">Cargando...</p>';
-
-                // Nota: Los data-target (ej: repair_catalog.html) asumen que los archivos
-                // que se cargan están en el mismo directorio: html/professionalzone/
                 fetch(target)
                     .then(r => r.text())
                     .then(html => main.innerHTML = html)
                     .catch(() => main.innerHTML = '<div class="alert alert-danger">Error cargando contenido</div>');
 
-                // manejar clase activa
                 navButtons.forEach(btn => btn.classList.remove('active'));
                 if(clickedButton) clickedButton.classList.add('active');
             }
 
-            // --- carga inicial ---
             const defaultButton = document.getElementById('btn-catalogo');
             loadContent(defaultButton.getAttribute('data-target'), defaultButton);
 
-            // --- listeners en los botones ---
             navButtons.forEach(btn => {
                 btn.addEventListener('click', e => {
                     e.preventDefault();
@@ -130,13 +105,14 @@
                     if (target) loadContent(target, btn);
                 });
             });
+
+            const profileLink = document.getElementById('profile-link');
+            if (profileLink) profileLink.addEventListener('click', e => e.stopPropagation());
         });
 
-        // REDIRECCIÓN CORREGIDA: Sube un nivel ('..') para ir a 'html/', luego entra en 'clientzone/'
         document.getElementById('right-bar').addEventListener('click', () => {
             window.location.href = '../clientzone/inicio-cliente.html';
         });
     </script>
-
 </body>
 </html>
