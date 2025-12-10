@@ -77,25 +77,12 @@
         </div>
     </div>
 
+    <script src="../../../js/cargar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="../../../js/professionalzone/repair_catalog.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const main = document.getElementById('main-content');
-            const navButtons = document.querySelectorAll('#sidebar-nav a[data-target]');
-
-            function loadContent(target, clickedButton) {
-                main.innerHTML = '<p class="text-center text-muted p-5">Cargando...</p>';
-                fetch(target)
-                    .then(r => r.text())
-                    .then(html => main.innerHTML = html)
-                    .catch(() => main.innerHTML = '<div class="alert alert-danger">Error cargando contenido</div>');
-
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                if(clickedButton) clickedButton.classList.add('active');
-            }
-
             const defaultButton = document.getElementById('btn-catalogo');
+            const navButtons = document.querySelectorAll('#sidebar-nav a[data-target]');
             loadContent(defaultButton.getAttribute('data-target'), defaultButton);
 
             navButtons.forEach(btn => {

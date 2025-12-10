@@ -58,7 +58,7 @@ const tutorials = [
 document.addEventListener('DOMContentLoaded', () => 
 {
     template = document.querySelector('#tutorial-header-template')
-
+    consloe.log("nsns")
     loadTutorialsHeaders(document.querySelector('.tutorials-container'), tutorials)
 })
 
