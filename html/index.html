@@ -11,6 +11,19 @@
         crossorigin="anonymous"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='../css/index.css'>
     <title>Inicio</title>
+    <style>
+        .invalid-feedback {
+            display: none;
+            /* Ocultar por defecto */
+            color: red;
+            /* Asegurar que el texto del feedback sea rojo */
+        }
+
+        .is-invalid+.invalid-feedback {
+            display: block;
+            /* Mostrar solo si el campo tiene la clase is-invalid */
+        }
+    </style>
 </head>
 
 <body class="bg-image">
@@ -23,7 +36,8 @@
                 <div class="col-12 col-md-6 d-flex flex-column justify-content-center text-white p-5 left-panel">
                     <h1 class="display-4 fw-bold">Bienvenido a FixHub</h1>
                     <p class="fs-4 mt-4">
-                        Fixhub es una herramienta para encontrar personas capaces de reparar eso que creías perdido para siempre.
+                        Fixhub es una herramienta para encontrar personas capaces de reparar eso que creías perdido para
+                        siempre.
                         ¡Encuentra al profesional adecuado con nosotros! :)
                     </p>
                 </div>
@@ -37,20 +51,28 @@
                             ¿Primera vez? Crea tu cuenta <a href="../html/new_acount.html">aquí</a>
                         </p>
 
-                        <div class="mt-3">
-                            <label class="form-label">Usuario / Correo</label>
-                            <input type="text" id="username" class="form-control">
-                        </div>
 
-                        <div class="mt-3">
-                            <label class="form-label">Contraseña</label>
-                            <input type="password" class="form-control">
-                        </div>
+                        <form id="logForm">
+                            <div class="mt-3">
+                                <label class="form-label">Usuario / Correo</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                                <div class="invalid-feedback">
+                                    Introduce un el correo o el usuario
+                                </div>
+                            </div>
 
-                        <div class="d-grid mt-4">
-                            <button id="login" class="btn btn-primary">Entrar</button>
-                        </div>
+                            <div class="mt-3">
+                                <p class="form-label mb-1">Contraseña</p>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                                <div class="invalid-feedback">
+                                    Introduce la contraseña
+                                </div>
+                            </div>
 
+                            <div class="d-grid mt-4">
+                                <button class="btn btn-primary" id="btnlog">Entrar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -61,6 +83,61 @@
     <script src="../js/classes.js"></script>
     <script src="../js/fake_data.js"></script>
     <script src="../js/index.js"></script>
+
+    <script>
+        // Obtenemos los elementos del DOM
+        const btnRegistrarse = document.getElementById('btnlog');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+
+        // Función de validación visual
+        function validateField(inputElement) {
+            inputElement.classList.remove('is-invalid');
+            inputElement.classList.remove('is-valid');
+
+            if (inputElement.value.trim() === '') {
+                inputElement.classList.add('is-invalid');
+                return false;
+            } else {
+                inputElement.classList.add('is-valid');
+                return true;
+            }
+        }
+
+        // Listeners para validación en tiempo real
+        usernameInput.addEventListener("input", function () {
+            validateField(usernameInput);
+        })
+
+        passwordInput.addEventListener("input", function () {
+            validateField(passwordInput);
+        })
+
+        // Listener del botón
+        btnRegistrarse.addEventListener("click", function (event) {
+            // IMPORTANTE: Prevenir que el formulario recargue la página
+            event.preventDefault();
+
+            console.log("Pulsado");
+
+            // Usamos la función validateField para verificar ambos campos
+            // Esto devuelve true o false y además pinta los bordes rojos/verdes
+            const isUserValid = validateField(usernameInput);
+            const isPassValid = validateField(passwordInput);
+
+            // Depuración: ver qué valores está leyendo JS
+            console.log("Usuario:", usernameInput.value);
+            console.log("Contraseña:", passwordInput.value);
+
+            // Si ambos son válidos, redirigir
+            if (isUserValid && isPassValid) {
+                // Guardamos el valor real del input (.value)
+                sessionStorage.setItem("username", usernameInput.value);
+                window.location.href = "sharedcontent/choose_area.html";
+            }
+        });
+    </script>
+
 </body>
 
 </html>
