@@ -59,7 +59,6 @@ function loadContent(target, clickedButton, id, zone = 'client') {
         })
         .catch(() => main.innerHTML = '<div class="alert alert-danger">Error cargando contenido</div>');
 
-
     navButtons.forEach(
         btn => {
             btn.classList.remove('active')
