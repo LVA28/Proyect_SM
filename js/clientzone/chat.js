@@ -71,7 +71,7 @@ function onLoadChat() {
         ? JSON.parse(storedUsers).find(n => n.id == sessionStorage.getItem("userId")) 
         : null;
 
-    if (!destinationUser) destinationUser = { username: "Desconocido", profilePicture: "https://cdn.memegenerator.es/imagenes/memes/full/32/15/32159974.jpg" };
+    if(Math.floor(Math.random() * 2) == 0) destinationUser = { username: "Desconocido", profilePicture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtNNU6hAkRbRelTwgSw9HRMKqu_wn2i3Wm2g&s" };
 
     document.querySelector('.chatter-name').textContent = destinationUser.username;
 

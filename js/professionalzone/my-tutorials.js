@@ -25,7 +25,7 @@ function onLoadMisTutoriales() {
   if (addNewBtn) {
     addNewBtn.addEventListener('click', () => {
       sessionStorage.setItem("tutorialId", "new")
-      loadContent("nuevo-tutorial.html", null, "10")
+      loadContent("nuevo-tutorial.html", null, "10", 'professional')
     })
   }
 

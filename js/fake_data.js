@@ -697,35 +697,47 @@ new ChatMessage(
     ];
 
 
-    let myproductsData = [
-        {
-            id: 1,
-            name: "Mesa de Roble Restaurada",
-            price: "120€",
-            location: "Madrid",
-            tags: ["Muebles", "Upcycling", "Pieza única"],
-            description: "Mesa de centro antigua recuperada, tratada con barniz ecológico y patas de hierro forjado.",
-            date: "2023-11-10" 
-        },
-        {
-            id: 2,
-            name: "Pack Jabones de Lavanda",
-            price: "18€",
-            location: "Valencia",
-            tags: ["Cosmética", "Vegano", "Km 0"],
-            description: "Set de 3 jabones artesanales hechos en frío con aceite de oliva virgen y lavanda de la zona.",
-            date: "2023-12-05"
-        },
-        {
-            id: 3,
-            name: "Jarrón Cerámica 'Azul'",
-            price: "45€",
-            location: "Sevilla",
-            tags: ["Decoración", "Hecho a mano", "Cerámica"],
-            description: "Jarrón torneado a mano y esmaltado en azul cobalto. Ideal para flores secas o decoración.",
-            date: "2023-10-28" 
-        }
-    ];
+let myproductsData = [
+    new RepairApplication(
+        301, // id (nuevo, sin colisión)
+        1, // userId
+        "Mesa de Roble Restaurada", // title
+        120, // price
+        "placeholder", // imageUrl
+        "Madrid", // location
+        "Mesa de centro antigua recuperada, tratada con barniz ecológico y patas de hierro forjado.", // description
+        ["Muebles", "Upcycling", "Pieza única"], // tags
+        [], // interestedPersons
+        []  // interestedPersonsChats
+    ),
+
+    new RepairApplication(
+        302, // id
+        1, // userId
+        "Pack Jabones de Lavanda", // title
+        18, // price
+        "placeholder", // imageUrl
+        "Valencia", // location
+        "Set de 3 jabones artesanales hechos en frío con aceite de oliva virgen y lavanda de la zona.", // description
+        ["Cosmética", "Vegano", "Km 0"], // tags
+        [],
+        []
+    ),
+
+    new RepairApplication(
+        303, // id
+        1, // userId
+        "Jarrón Cerámica 'Azul'", // title
+        45, // price
+        "placeholder", // imageUrl
+        "Sevilla", // location
+        "Jarrón torneado a mano y esmaltado en azul cobalto. Ideal para flores secas o decoración.", // description
+        ["Decoración", "Hecho a mano", "Cerámica"], // tags
+        [],
+        []
+    )
+];
+
 
     const repairData = [
         new RepairApplication(

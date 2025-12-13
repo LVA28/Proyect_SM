@@ -92,6 +92,10 @@ function renderProductCards(productsData) {
         container.innerHTML = '';
         productsData.forEach(prod => {
             const card = createProductCard(prod, productsData);
+            card.addEventListener('click', () => {
+                sessionStorage.setItem("productId", prod.id)
+                loadContent("object-sale-resume.html", null, "14", 'professional')
+            })
             container.appendChild(card);
         });
     }
@@ -148,5 +152,5 @@ function onLoadMisProductos()
 {
     let productsData = JSON.parse(sessionStorage.getItem("myproducts"))
     renderProductCards(productsData);
-    setupSortListeners();
+    // setupSortListeners();
 }

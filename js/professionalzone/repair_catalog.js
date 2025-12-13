@@ -97,7 +97,6 @@ function insertarProducto(productos) {
 
             let chats = JSON.parse(sessionStorage.getItem("chats"))
 
-            alert(productos[i].interestedPersons)
             if(!productos[i].interestedPersons.includes(-1))
             {
                 const nextChatId = Math.max(
@@ -107,7 +106,6 @@ function insertarProducto(productos) {
                     ) + 1;
 
 
-                alert(nextChatId)
 
                 productos[i].interestedPersons.push(-1)
                 productos[i].interestedPersonsChats.push(nextChatId)

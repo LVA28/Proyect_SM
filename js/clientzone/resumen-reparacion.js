@@ -134,7 +134,6 @@ function onLoadResumenReparacion() {
     // Evento del botón Actualizar
     document.getElementById('repair-summary-form').addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Reparación actualizada correctamente');
 
         unloadFormData();
 
