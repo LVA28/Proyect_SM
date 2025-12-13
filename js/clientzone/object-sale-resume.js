@@ -7,9 +7,10 @@ let repairLocation;
 let repairDescription;
 let repairTagsContainer;
 
-function onLoadRepairResume() {
-
-    let repair = JSON.parse(sessionStorage.getItem("repairings")).filter(n => n.id == sessionStorage.getItem("repairId"))[0]
+function onLoadObjectResume() {
+    let chats = JSON.parse(sessionStorage.getItem("chats"))
+    let repairs = JSON.parse(sessionStorage.getItem("products"))
+    let repair = repairs.filter(n => n.id == sessionStorage.getItem("objectId"))[0]
 
     repairImage = document.querySelector('.repair-image');
     repairPrice = document.querySelector('.repair-price');
@@ -21,6 +22,22 @@ function onLoadRepairResume() {
     fillForm(repair)
 
     document.querySelector('#start-chat').addEventListener('click', () => {
+        if(!repair.interestedPersons.includes(-1))
+        {
+            const nextChatId = Math.max(
+            ...chats
+                .map(c => Number(c.chatId))
+                .filter(id => !Number.isNaN(id))
+            ) + 1;
+
+            repair.interestedPersons.push(-1)
+            repair.interestedPersonsChats.push(nextChatId)
+
+            repairs[repairs.indexOf(repair)] = repair
+
+            sessionStorage.setItem("products", JSON.stringify(repairs))
+        }
+
         sessionStorage.setItem("repairId", repair.id)
         sessionStorage.setItem("chatId", repair.interestedPersonsChats[repair.interestedPersons.indexOf(-1)])
         sessionStorage.setItem("userId", repair.userId)

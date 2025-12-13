@@ -111,7 +111,8 @@ function createRepairCard(application) {
     chatButton.type = 'button';
 
     // Aquí podrías añadir un listener para ir al chat
-    chatButton.addEventListener('click', () => {
+    chatButton.addEventListener('click', (e) => {
+        e.stopPropagation();
         sessionStorage.setItem("chatId", application.interestedPersonsChats[application.interestedPersons.indexOf(-1)])
         sessionStorage.setItem("repairId", application.id)
         sessionStorage.setItem("userId", application.userId)

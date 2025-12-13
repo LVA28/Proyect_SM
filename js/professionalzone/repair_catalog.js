@@ -94,6 +94,28 @@ function insertarProducto(productos) {
         // Evento del botón CHAT
         btnChat.onclick = (e) => {
             e.stopPropagation(); // Evita que se dispare el click de la tarjeta
+
+            let chats = JSON.parse(sessionStorage.getItem("chats"))
+
+            alert(productos[i].interestedPersons)
+            if(!productos[i].interestedPersons.includes(-1))
+            {
+                const nextChatId = Math.max(
+                    ...chats
+                        .map(c => Number(c.chatId))
+                        .filter(id => !Number.isNaN(id))
+                    ) + 1;
+
+
+                alert(nextChatId)
+
+                productos[i].interestedPersons.push(-1)
+                productos[i].interestedPersonsChats.push(nextChatId)
+
+                sessionStorage.setItem("repairings", JSON.stringify(productos))
+            }
+
+
             sessionStorage.setItem("repairId", productos[i].id);
             // Verificación de seguridad por si arrays son undefined
             let chatIndex = productos[i].interestedPersons ? productos[i].interestedPersons.indexOf(-1) : -1;

@@ -12,16 +12,16 @@
             <div class="container-fluid pt-4 px-4">
                 
                 <div class="title-box mb-4">
-                    MIS TUTORIALES
+                    <h2>MIS TUTORIALES</h2>
                 </div>
 
                 <div class="toolbar-container mb-4">
-                    <button class="btn-add-new" onclick="window.location.href='nuevo-tutorial.html'">
+                    <button class="btn-add-new" id="add-new-button">
                         Añadir<br>nuevo
                     </button>
 
                     <div class="search-box-container">
-                        <input type="text" placeholder="BUSCADOR POR TEXTO">
+                        <input type="text" class="search-input" placeholder="BUSCADOR POR TEXTO">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                         </svg>
@@ -45,7 +45,7 @@
             </div>
         </main>
 
-        <aside class="right-col-wrapper">
+        <!-- <aside class="right-col-wrapper">
             <div class="right-panel">
                 <div class="avatar-circle">
                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -64,10 +64,25 @@
                     Icono del<br>perfil
                 </div>
             </div>
-        </aside>
+        </aside> -->
 
     </div>
 
-    <script src="../../js/clientzone/mis-tutoriales.js"></script>
+    <template id="tutorial-header-template">
+        <div class="tutorial-header">
+            <img class="tutorial-image">
+            <div class="tutorial-info">
+                <div class="tutorial-first-row">
+                    <p class="tutorial-author"></p>
+                    <div class="tutorial-tags">
+                    </div>
+                </div>
+                <p class="tutorial-description"></p>
+            </div>
+            <button class="delete-tutorial">BORRAR</button>
+        </div>
+    </template>
+
+    <script src="../../js/professionalzone/my-tutorials.js"></script>
 </body>
 </html>

@@ -63,7 +63,8 @@ function createSaleCard(product) {
     card.appendChild(cardBody);
 
     card.addEventListener('click', () => {
-        
+        sessionStorage.setItem("objectId", product.id)
+        loadContent("object-sale-resume.html", null, "14", 'client')
     })
 
     return card;

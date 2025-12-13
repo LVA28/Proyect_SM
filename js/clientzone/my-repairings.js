@@ -55,5 +55,5 @@ function renderSingleRepair(repair, container, repairList) {
 function onLoadMisSolicitudesDeReparaciones()
 {
     let repairData = JSON.parse(sessionStorage.getItem("myrepairs"))
-    renderRepairList(repairData, document.querySelector('.reparing-container'))
+    renderRepairList(repairData, document.querySelector('#reparing-container'))
 }

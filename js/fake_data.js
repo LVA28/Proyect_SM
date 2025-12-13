@@ -902,8 +902,8 @@ new ChatMessage(
         ["Muebles", "Upcycling", "Pieza única"],
         "120€",
         15,
-        [51, -1],
-        [30001, 30002]
+        [51],
+        [30001]
     ),
 
     new Product(

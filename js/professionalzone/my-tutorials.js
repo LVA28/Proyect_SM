@@ -17,12 +17,12 @@ function onLoadMisTutoriales() {
     let tutorials = JSON.parse(sessionStorage.getItem("mytutorials"))
 
     visualTutorials = tutorials;
-    container = document.querySelector('.tutorials-header-container');
-    filterViews = document.querySelector('#filter-by-views')
-    filterDate = document.querySelector('#filter-by-date')
+    container = document.querySelector('.tutorials-list');
+    // filterViews = document.querySelector('#filter-by-views')
+    // filterDate = document.querySelector('#filter-by-date')
 
-    currentFilterViews = filterViews.value
-    currentFilterDate = filterDate.value
+    // currentFilterViews = filterViews.value
+    // currentFilterDate = filterDate.value
 
     searchInput = document.querySelector('.search-input')
     document.querySelector('#add-new-button').addEventListener('click', () =>{
@@ -38,25 +38,29 @@ function onLoadMisTutoriales() {
         }
     })
 
-    filterViews.addEventListener('change', (e) =>{
-        if (e.target.value !== currentFilterViews)
-        {
-            currentFilterViews = e.target.value
-            visualTutorials = orderTutorialsByViews(currentFilterViews === 'Más visitas')
-            //Buenas. Si alguien del equipo se le ocurre pasar por aquí, POR FAVOR, no cometáis esta atrocidad que estáis presenciando ante vosotros. Esto es el resultado de alguien que lleva todo el día encerrado en la uni trabajando. Es preferible sufrir un rodillazo en los huevos a hacer esto
-            renderTutorialList(visualTutorials, container)
-        }
-    })
+    // filterViews.addEventListener('change', (e) =>{
+    //     if (e.target.value !== currentFilterViews)
+    //     {
+    //         currentFilterViews = e.target.value
+    //         visualTutorials = orderTutorialsByViews(currentFilterViews === 'Más visitas')
+    //         //Buenas. Si alguien del equipo se le ocurre pasar por aquí, POR FAVOR, no cometáis esta atrocidad que estáis presenciando ante vosotros. Esto es el resultado de alguien que lleva todo el día encerrado en la uni trabajando. Es preferible sufrir un rodillazo en los huevos a hacer esto
+    //         renderTutorialList(visualTutorials, container)
+    //     }
+    // })
 
-    filterDate.addEventListener('change', (e) =>{
-        if (e.target.value !== currentFilterDate)
-        {
-            currentFilterDate = e.target.value
-            visualTutorials = orderTutorialsByDate(currentFilterDate === 'Más reciente')
-            //Buenas. Si alguien del equipo se le ocurre pasar por aquí, POR FAVOR, no cometáis esta atrocidad que estáis presenciando ante vosotros. Esto es el resultado de alguien que lleva todo el día encerrado en la uni trabajando. Es preferible sufrir un rodillazo en los huevos a hacer esto
-            renderTutorialList(visualTutorials, container)
-        }
-    })
+    // filterDate.addEventListener('change', (e) =>{
+    //     if (e.target.value !== currentFilterDate)
+    //     {
+    //         currentFilterDate = e.target.value
+    //         visualTutorials = orderTutorialsByDate(currentFilterDate === 'Más reciente')
+    //         //Buenas. Si alguien del equipo se le ocurre pasar por aquí, POR FAVOR, no cometáis esta atrocidad que estáis presenciando ante vosotros. Esto es el resultado de alguien que lleva todo el día encerrado en la uni trabajando. Es preferible sufrir un rodillazo en los huevos a hacer esto
+    //         renderTutorialList(visualTutorials, container)
+    //     }
+    // })
+
+    // document.querySelector('#add-tutorial').addEventListener('click', ()=> {
+    //     loadContent("nuevo-tutorial.html", null, "", 'professional');
+    // })
 
 
     renderTutorialList(tutorials, container)

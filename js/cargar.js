@@ -57,6 +57,8 @@ function loadContent(target, clickedButton, id, zone = 'client') {
                     case "13":
                         onLoadVideoPlayer();
                         break;
+                    case "14":
+                        onLoadObjectResume();
                 }
             })
         })

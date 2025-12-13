@@ -33,3 +33,21 @@
     --tamano-fuente-base: 16px;
     --altura-linea: 1.5;
 }
+
+.titulo, h1, h2
+{
+  font-family: var(--fuente-titulo);
+  font-size: large;
+}
+
+.subtitulo, h3, aside
+{
+  font-family: var(--fuente-subtitulo);
+  font-size: medium;
+}
+
+.texto, button
+{
+  font-family: var(--fuente-texto) !important;
+  font-size: var(--tamano-fuente-base);
+}
