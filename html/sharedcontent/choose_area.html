@@ -1,27 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegir zona</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="../../css/sharedcontent/choose_area.css">
+    <link rel="stylesheet" type="text/css" href="../../css/sharedcontent/choose_area.css">
 </head>
+
 <body>
     <main>
-        <h1 class="title">ELIGE LA MODALIDAD</h1>
+        <div class="title-container">
+            <h1 class="title">Elija Modalidad:</h1>
+        </div>
 
         <div class="main-content">
             <a class="professional-zone zone" href="../professionalzone/inicio-profesional.html">
                 <h2>PROFESIONAL</h2>
-                <img>
-                <p>Aquí puedes vender, subir tutoriales o realizar encargos</p>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3l2.5 2.5L12 8l-2.5-2.5z"></path>
+                    <path d="M12 8l3 10-3 3-3-3z"></path>
+                </svg>
+                <div class="pill">
+                    <p>Aquí puedes vender, subir tutoriales o realizar encargos</p>
+                </div>
             </a>
+
             <a class="client-zone zone" href="../clientzone/inicio-cliente.html">
-                <h2>CLIENTE</h2>
-                <img>
-                <p>Aquí puedes comprar, ver tutoriales o solicitar encargos</p>
+                <h2>Cliente</h2>
+                <svg class="icon filled" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+                <div class="pill">
+                    <p>Aquí puedes comprar, ver tutoriales o solicitar encargos</p>
+                </div>
             </a>
         </div>
     </main>
 </body>
+
 </html>

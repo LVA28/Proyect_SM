@@ -1,53 +1,123 @@
+/* Reset básico */
 * {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Arial', sans-serif; /* Fuente sans-serif limpia */
 }
 
-.main-content
-{
-    max-height: 100vh;
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Evita scrollbars */
+}
+
+main {
+    position: relative;
     height: 100vh;
-    width: 100vw;
-    max-width: 100vw;
-    display: flex;
-
+    width: 100%;
 }
 
-.zone
-{
-    width: 50vw;
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-decoration: none;
-}
-
-.client-zone
-{
-    background-color: green;
-}
-
-.professional-zone
-{
-    background-color: orange;
-}
-
-.title
-{
+/* --- TÍTULO FLOTANTE --- */
+.title-container {
     position: absolute;
-    top: 20%;
+    top: 15%; /* Ajuste vertical */
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 10; /* Asegura que esté por encima de los fondos */
+    width: 100%;
+    text-align: center;
 }
 
-.title, p
-{
-    border-radius: 10px;
-
-    padding: 2rem;
-
+.title {
     background-color: white;
+    color: black;
+    display: inline-block;
+    padding: 15px 40px;
+    border-radius: 10px;
+    font-size: 3rem;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- CONTENEDOR PRINCIPAL DIVIDIDO --- */
+.main-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* --- ESTILOS COMUNES DE LAS ZONAS --- */
+.zone {
+    flex: 1; /* Ocupa el 50% cada uno */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Quita subrayado de links */
+    transition: filter 0.3s ease;
+    padding: 20px;
+}
+
+.zone:hover {
+    filter: brightness(1.1); /* Efecto brillo al pasar el ratón */
+}
+
+.zone h2 {
+    font-size: 3.5rem;
+    font-weight: 300; /* Letra fina */
+    margin-bottom: 20px;
+    margin-top: 50px; /* Espacio para no chocar con el título */
+}
+
+/* --- ZONA PROFESIONAL (IZQUIERDA) --- */
+.professional-zone {
+    /* Gradiente dorado/marrón */
+    background: linear-gradient(135deg, #cc9e46 0%, #b88a32 100%);
+    color: black;
+}
+
+.professional-zone .icon {
+    width: 150px;
+    height: 250px;
+    stroke: black;
+    stroke-width: 1;
+    margin-bottom: 40px;
+}
+
+/* --- ZONA CLIENTE (DERECHA) --- */
+.client-zone {
+    /* Gradiente verde */
+    background: linear-gradient(135deg, #5ddb68 0%, #3ebf64 100%);
+    color: white;
+}
+
+.client-zone h2 {
+    font-weight: 300;
+}
+
+.client-zone .icon {
+    width: 180px;
+    height: 180px;
+    fill: white;
+    margin-bottom: 80px;
+    margin-top: 30px;
+}
+
+/* --- CAJAS DE TEXTO INFERIORES (PILLS) --- */
+.pill {
+    background-color: white;
+    padding: 15px 25px;
+    border-radius: 50px; /* Bordes totalmente redondeados */
+    margin-top: auto; /* Empuja el elemento al fondo si usas flex-direction column */
+    margin-bottom: 50px;
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.pill p {
+    color: black;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
