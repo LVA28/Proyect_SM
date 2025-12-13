@@ -762,7 +762,7 @@ function loadFakeData()
             205, // id
             3, // userId
             "Cómo desatascar tuberías sin productos químicos", // name
-            "https://example.com/videos/desatascar-tuberias.mp4", // videoUrl
+            "../../../video/2025-02-25 16-32-08.mp4", // videoUrl
             "https://example.com/banners/desatascar-tuberias.jpg", // bannerUrl
             "Métodos mecánicos y caseros para desatascar lavabos y sifones: uso de ventosa, sonda, mezcla bicarbonato+vinagre y cuándo llamar a un profesional.", // description
             ["Fontanería", "Desatasco", "DIY"], // tags

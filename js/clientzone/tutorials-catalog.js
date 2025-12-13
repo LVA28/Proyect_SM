@@ -11,16 +11,12 @@ function loadTutorialsHeaders(container, tutorials)
 function loadTutorialHeader(container, tutorial)
 {
     const template = createTutorialHeader(tutorial)
-    template.querySelector('.tutorial-header').addEventListener('click', () =>{
-        loadContent("nuevo-tutorial.html", null, "")
-    })
-
     container.appendChild(template)
 }
 
 function createTutorialHeader(tutorial)
 {
-    const copy = template.content.cloneNode(true)
+    const copy = template.content.cloneNode(true).querySelector('.tutorial-header')
     copy.querySelector('.name').textContent = tutorial.name;
     copy.querySelector('.repair-image').src = tutorial.bannerUrl;
     copy.querySelector('.description').textContent = tutorial.description;
@@ -31,6 +27,12 @@ function createTutorialHeader(tutorial)
         tag.textContent = n
         tagsContainer.appendChild(tag)
     })
+
+    copy.addEventListener('click', () => {
+        sessionStorage.setItem("videoId", tutorial.id)
+        loadContent("video-player.html", null, "13", 'client')
+    })
+
     return copy
 }
 
