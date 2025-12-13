@@ -6,14 +6,14 @@ function renderRepairList(repairList, container) {
     container.innerHTML = ""; // Limpia el contenedor
 
     repairList.forEach(repair => {
-        renderSingleRepair(repair, container);
+        renderSingleRepair(repair, container, repairList);
     });
 }
 
 // 2. Recibe una sola reparación y un container
-function renderSingleRepair(repair, container) {
+function renderSingleRepair(repair, container, repairList) {
     const template = document.getElementById("repairing-template");
-    const clone = template.content.cloneNode(true);
+    const clone = template.content.cloneNode(true).querySelector('.repairing-header');
 
     // Rellenar datos
     clone.querySelector(".name").textContent = repair.name;
@@ -37,11 +37,15 @@ function renderSingleRepair(repair, container) {
     const deleteButton = clone.querySelector(".delete-button");
     deleteButton.addEventListener("click", (e) => {
         e.stopPropagation();
-        alert("TODO!!");
+        
+        repairList.splice(repairList.indexOf(repair), 1)
+        sessionStorage.setItem("myrepairs", JSON.stringify(repairList))
+        clone.remove()
     });
 
-    clone.querySelector('.repairing-header').addEventListener('click', () =>{
-        loadContent("resumen-reparacion.html", null, "")
+    clone.addEventListener('click', () =>{
+        sessionStorage.setItem("repairId", repair.id)
+        loadContent("resumen-reparacion.html", null, "11", 'client')
     })
 
     // Insertar en el container

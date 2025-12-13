@@ -50,7 +50,13 @@ function insertarProducto(productos) {
         let btnChat = document.createElement("button");
         btnChat.className = "chat-btn";
         btnChat.textContent = "INICIAR CHAT";
-        btnChat.onclick = iniciarChat;
+        btnChat.onclick = (e) => {
+            e.stopPropagation()
+            sessionStorage.setItem("repairId", productos[i].id)
+            sessionStorage.setItem("chatId", productos[i].interestedPersonsChats[productos[i].interestedPersons.indexOf(-1)])
+            sessionStorage.setItem("userId", productos[i].userId)
+            loadContent("chat.html", null, "9", 'professional')
+        };
 
         div6.append(div7);
         div6.append(btnChat);
@@ -69,6 +75,11 @@ function insertarProducto(productos) {
         div1.append(div2);
         catalago.append(div1);
 
+        div1.addEventListener('click', () => {
+            sessionStorage.setItem("repairId", productos[i].id)
+            loadContent("repair-resume.html", null, "12", 'professional')
+        })
+
         let separator = document.createElement("div");
         separator.className = "item-separator";
         catalago.append(separator);
@@ -80,10 +91,6 @@ function limpiarPantalla() {
     if(catalogo){
         catalogo.innerHTML = "";
     }
-}
-
-function iniciarChat(){
-    loadContent("chat.html", null, "")
 }
 
 function onLoadCatalogo()

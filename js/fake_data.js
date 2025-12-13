@@ -36,7 +36,8 @@ function loadFakeData()
             "Madrid", // location
             "Necesito un fontanero urgente para una pequeña fuga en el baño.", //description
             ["Fontanería", "Urgente", "24h"], //tags
-            [2, 3] // interestedPersons
+            [-1, 3], // interestedPersons
+            [10101, 10102]
         ),
         new RepairApplication(
             102, //id
@@ -47,7 +48,8 @@ function loadFakeData()
             "Barcelona", // location
             "Instalar lavavajillas nuevo y revisar toma de agua.", //description
             ["Electrodomésticos", "Instalación"], //tags
-            [5, 7] // interestedPersons
+            [5, -1], // interestedPersons
+            [10201, 10202]
         ),
         new RepairApplication(
             103, //id
@@ -102,7 +104,8 @@ function loadFakeData()
             "Málaga", // location
             "Cortocircuito en la cocina, salta el diferencial.", //description
             ["Electricidad", "Urgente", "Seguridad"], //tags
-            [3, 9] // interestedPersons
+            [3, -1], // interestedPersons
+            [10701, 10702]
         ),
         new RepairApplication(
             108, //id
@@ -190,7 +193,8 @@ function loadFakeData()
             "Oviedo", // location
             "Entrada de agua por la terraza cuando llueve fuerte.", //description
             ["Impermeabilización", "Urgente"], //tags
-            [11, 13] // interestedPersons
+            [11, 13], // interestedPersons
+            [11501, 11502]
         ),
         new RepairApplication(
             116, //id
@@ -234,7 +238,8 @@ function loadFakeData()
             "Toledo", // location
             "Tablas levantadas en el pasillo, necesito arreglo.", //description
             ["Suelo", "Carpintería"], //tags
-            [5, 9] // interestedPersons
+            [5, 9], // interestedPersons
+            [11901, 11902]
         ),
         new RepairApplication(
             120, //id
@@ -525,68 +530,117 @@ function loadFakeData()
     ];
 
     const chatMessages = [
-        // Chat para la reparación 101 (uploader: userId 1, interesados: [2,3])
-        new ChatMessage(1001, 1, 101, "2025-11-20T09:12:00Z", "Hola, gracias por mirar la petición. ¿Puedes confirmar disponibilidad hoy por la tarde?"),
-        new ChatMessage(1002, 2, 101, "2025-11-20T09:20:00Z", "Puedo pasar a las 16:00. ¿Dónde está exactamente el baño?"),
-        new ChatMessage(1003, 3, 101, "2025-11-20T09:25:00Z", "Si les viene mejor puedo pasar también a las 18:00."),
+    // ================================
+    // Reparación 101 — uploader: 1 — interesados: 2 y 3
+    // ================================
 
-        // Chat para la reparación 102 (uploader: 2, interesados: [5,7])
-        new ChatMessage(1004, 2, 102, "2025-10-05T14:00:00Z", "El lavavajillas es un modelo Bosch serie 4. ¿Tendréis que traer algo especial?"),
-        new ChatMessage(1005, 5, 102, "2025-10-05T14:18:00Z", "Traeré adaptadores y la herramienta, calculo 45-60 min para la instalación."),
+    // Conversación 1 ↔ 2  (chatId: 10101)
+    new ChatMessage(2001, -1, 101, 10101, "2025-11-20T09:20:00Z",
+        "Hola, he visto tu reparación. Puedo pasar a las 16:00. ¿Dónde está exactamente el baño?"),
+    new ChatMessage(2002, 1, 101, 10101, "2025-11-20T09:22:00Z",
+        "Perfecto, gracias por interesarte. Está al fondo del pasillo, te espero a las 16:00."),
 
-        // Chat para la reparación 104 (uploader: 4, interesados: [8])
-        new ChatMessage(1006, 8, 104, "2025-09-12T11:30:00Z", "¿La cerradura es antigua o de seguridad nueva? Llevo varias opciones por si hace falta cambiar cilindro."),
-        new ChatMessage(1007, 4, 104, "2025-09-12T11:40:00Z", "Es antigua, creo que con cambiar el cilindro vale. Gracias por preguntar."),
+    // Conversación 1 ↔ 3  (chatId: 10102)
+    new ChatMessage(2003, 3, 101, 10102, "2025-11-20T09:25:00Z",
+        "Hola, también estoy interesado. Si te va bien, puedo pasar a las 18:00."),
+    new ChatMessage(2004, 1, 101, 10102, "2025-11-20T09:27:00Z",
+        "Gracias por avisar. A las 18:00 también me viene bien, te espero."),
 
-        // Chat para la reparación 107 (uploader: 7, interesados: [3,9])
-        new ChatMessage(1008, 7, 107, "2025-08-01T20:05:00Z", "Gracias por la respuesta rápida. ¿Es urgente pasar hoy? Se va la luz cuando uso la vitro."),
-        new ChatMessage(1009, 3, 107, "2025-08-01T20:12:00Z", "Puedo pasar esta noche para revisar la línea, llevo tester y repuestos básicos."),
 
-        // Chat para la reparación 112 (uploader: 12, interesados: [9,16])
-        new ChatMessage(1010, 12, 112, "2025-07-03T10:00:00Z", "Son 2 armarios y una estantería. ¿Cuánto cobrarías por unidad?"),
-        new ChatMessage(1011, 9, 112, "2025-07-03T10:08:00Z", "60€ en total como indiqué (todo incluido). Traigo tornillería y tacos."),
+    // ================================
+    // Reparación 102 — uploader: 2 — interesados: 5 y 7
+    // ================================
 
-        // Chat para la reparación 115 (uploader: 15, interesados: [11,13])
-        new ChatMessage(1012, 15, 115, "2025-06-15T09:45:00Z", "La gotera aparece solo cuando llueve fuerte, el acceso es por la terraza comunitaria."),
-        new ChatMessage(1013, 11, 115, "2025-06-15T10:00:00Z", "Perfecto, puedo revisar el sellado y propondré solución. ¿Hay fotos?"),
-        new ChatMessage(1014, 13, 115, "2025-06-15T10:05:00Z", "Si me pasas medidas, llevo material y presupuesto cerrado."),
+    // Conversación 2 ↔ 5 (chatId: 10201)
+    new ChatMessage(2005, 5, 102, 10201, "2025-10-05T14:18:00Z",
+        "Hola, estoy interesado en la instalación. Llevaré adaptadores y herramientas; estimo 45-60 min."),
+    new ChatMessage(2006, 2, 102, 10201, "2025-10-05T14:20:00Z",
+        "Genial, gracias. Es un Bosch serie 4, por si necesitas algo especial."),
 
-        // Chat para la reparación 119 (uploader: 19, interesados: [5,9])
-        new ChatMessage(1015, 19, 119, "2025-05-02T16:10:00Z", "Las tablas se levantan al final del pasillo, no sé si hay humedad debajo."),
-        new ChatMessage(1016, 5, 119, "2025-05-02T16:25:00Z", "Puedo quitar unas tablas y ver el subsuelo. ¿Te va bien el jueves 9:00?"),
+    // Conversación 2 ↔ 7 (chatId: 10202)
+    new ChatMessage(2007, -1, 102, 10202, "2025-10-05T14:25:00Z",
+        "Buenas, puedo revisarlo mañana. Llevaré material por si hace falta pieza."),
+    new ChatMessage(2008, 2, 102, 10202, "2025-10-05T14:26:00Z",
+        "Perfecto. El modelo es Bosch serie 4, por si te orienta."),
 
-        // Chat para la reparación 120 (uploader: 20, interesados: [2,7])
-        new ChatMessage(1017, 20, 120, "2025-04-10T08:30:00Z", "El sifón hace ruido y huele a desagüe, ¿es algo que se pueda solucionar sin obras?"),
-        new ChatMessage(1018, 2, 120, "2025-04-10T08:45:00Z", "En la mayoría de casos sí, llevo desatascador y sonda. Precio 45€ si es sencillo."),
 
-        // Chat para la reparación 123 (uploader: 3, interesados: [4,6])
-        new ChatMessage(1019, 3, 123, "2025-03-22T12:00:00Z", "El grifo empieza a gotear por la mañana, ¿se cambia arandela o el cartucho?"),
-        new ChatMessage(1020, 6, 123, "2025-03-22T12:10:00Z", "Lo miro en 10 minutos y te confirmo. Normalmente arandela o junta, 15€ aprox."),
+    // ================================
+    // Reparación 107 — uploader: 7 — interesados: 3 y 9
+    // ================================
 
-        // Chat para la reparación 131 (uploader: 11, interesados: [4,12])
-        new ChatMessage(1021, 11, 131, "2025-02-11T09:00:00Z", "El radiador pierde por la llave lateral, ¿necesitas que lo vacíe antes?"),
-        new ChatMessage(1022, 4, 131, "2025-02-11T09:12:00Z", "No hace falta vaciar todo, con una bayeta y recipiente trabajamos. Paso hoy por la tarde."),
+    // Conversación 7 ↔ 3 (chatId: 10701)
+    new ChatMessage(2009, 3, 107, 10701, "2025-08-01T20:12:00Z",
+        "Hola, puedo pasar esta noche para revisar la línea. Llevo tester y repuestos."),
+    new ChatMessage(2010, 7, 107, 10701, "2025-08-01T20:13:00Z",
+        "Gracias. ¿Crees que es urgente? La luz se va cuando uso la vitro."),
 
-        // Chat para la reparación 133 (uploader: 13, interesados: [9,17])
-        new ChatMessage(1023, 13, 133, "2025-01-29T07:50:00Z", "El motor hace ruido al arrancar y se para. ¿Cobras por hora o por reparación?"),
-        new ChatMessage(1024, 9, 133, "2025-01-29T08:05:00Z", "Reparación cerrada: 320€ (mano de obra + piezas). Puedo visitar el miércoles."),
+    // Conversación 7 ↔ 9 (chatId: 10702)
+    new ChatMessage(2011, -1, 107, 10702, "2025-08-01T20:14:00Z",
+        "Hola, yo podría ir mañana por la mañana con equipo para comprobar derivaciones."),
+    new ChatMessage(2012, 7, 107, 10702, "2025-08-01T20:15:00Z",
+        "Perfecto, gracias. La vitro está dando problemas y necesito revisarla."),
 
-        // Chat para la reparación 139 (uploader: 19, interesados: [5,12])
-        new ChatMessage(1025, 19, 139, "2024-12-10T15:30:00Z", "¿El pulido incluye 2 manos de barniz?"),
-        new ChatMessage(1026, 12, 139, "2024-12-10T15:45:00Z", "Sí, pulimos y damos 2 manos. Tiempo estimado 1 día para 60 m²."),
 
-        // Chat para la reparación 145 (uploader: 5, interesados: [6,18])
-        new ChatMessage(1027, 5, 145, "2024-11-02T11:00:00Z", "La filtración aparece solo con lluvia intensa; ¿se puede revisar desde dentro?"),
-        new ChatMessage(1028, 6, 145, "2024-11-02T11:15:00Z", "Haré una comprobación y propongo reemplazo de sellado si hace falta."),
+    // ================================
+    // Reparación 115 — uploader: 15 — interesados: 11 y 13
+    // ================================
 
-        // Chat para la reparación 128 (uploader: 8, interesados: [2,13])
-        new ChatMessage(1029, 8, 128, "2024-10-18T09:00:00Z", "El canalón tiene hojas y está roto en un tramo, ¿lo reparáis in situ?"),
-        new ChatMessage(1030, 13, 128, "2024-10-18T09:20:00Z", "Sí, reparo con parche y si hace falta cambio tramo. ¿Acceso por escalera?"),
+    // Conversación 15 ↔ 11 (chatId: 11501)
+    new ChatMessage(2013, 11, 115, 11501, "2025-06-15T10:00:00Z",
+        "Hola, puedo revisar el sellado. ¿Tienes fotos de la gotera?"),
+    new ChatMessage(2014, 15, 115, 11501, "2025-06-15T10:02:00Z",
+        "Sí, aparece cuando llueve fuerte. El acceso es por la terraza comunitaria."),
 
-        // Mensajes sueltos / pruebas (no todas las reparaciones necesitan chat)
-        new ChatMessage(1031, 14, 114, "2024-09-05T13:00:00Z", "¿Tienes la tela elegida para el tapizado?"),
-        new ChatMessage(1032, 10, 114, "2024-09-05T13:10:00Z", "Sí, gris claro tal como comentamos. ¿Cuánto tarda el trabajo?"),
+    // Conversación 15 ↔ 13 (chatId: 11502)
+    new ChatMessage(2015, 13, 115, 11502, "2025-06-15T10:05:00Z",
+        "Hola, si me pasas medidas llevo material y presupuesto cerrado."),
+    new ChatMessage(2016, 15, 115, 11502, "2025-06-15T10:07:00Z",
+        "Perfecto, te doy medidas en un momento. Gracias."),
+
+
+    // ================================
+    // Reparación 119 — uploader: 19 — interesados: 5 y 9
+    // ================================
+
+    // Conversación 19 ↔ 5 (chatId: 11901)
+    new ChatMessage(2017, 5, 119, 11901, "2025-05-02T16:25:00Z",
+        "Hola, puedo quitar unas tablas y ver el subsuelo. ¿Te va bien jueves 9:00?"),
+    new ChatMessage(2018, 19, 119, 11901, "2025-05-02T16:27:00Z",
+        "Sí, perfecto. Las tablas se levantan al final del pasillo, no sé si hay humedad."),
+
+    // Conversación 19 ↔ 9 (chatId: 11902)
+    new ChatMessage(2019, 9, 119, 11902, "2025-05-02T16:30:00Z",
+        "Buenas, puedo ir mañana por la tarde con medidor de humedad."),
+    new ChatMessage(2020, 19, 119, 11902, "2025-05-02T16:31:00Z",
+        "Genial, así comprobamos si hay algo bajo las tablas."),
+
+
+    // ================================
+    // Conversaciones nuevas desde repairData
+    // ================================
+
+    // repair 201 — uploader: -1 — interesados: [2,3]
+
+    // Conversación -1 ↔ 2 (chatId: 20101)
+    new ChatMessage(2021, 2, 201, 20101, "2025-12-01T09:05:00Z",
+        "Hola, estoy interesado en la reparación de la fuga. ¿Te viene bien hoy a mediodía?"),
+    new ChatMessage(2022, -1, 201, 20101, "2025-12-01T09:06:00Z",
+        "Sí, perfecto. Es una fuga pequeña en el baño, gracias por ofrecerte."),
+
+    // Conversación -1 ↔ 3 (chatId: 20102)
+    new ChatMessage(2023, 3, 201, 20102, "2025-12-01T09:12:00Z",
+        "Buenas, puedo pasar a las 17:00 para revisar la fuga si te va bien."),
+    new ChatMessage(2024, -1, 201, 20102, "2025-12-01T09:13:00Z",
+        "A esa hora está perfecto, gracias por interesarte."),
+
+    // repair 202 — uploader: -1 — interesados: [4]
+    // Conversación -1 ↔ 4 (chatId: 20201)
+    new ChatMessage(2025, 4, 202, 20201, "2025-12-01T10:08:00Z",
+        "Hola, puedo darte presupuesto si me envías fotos de las paredes."),
+    new ChatMessage(2026, -1, 202, 20201, "2025-12-01T10:09:00Z",
+        "Claro, te las paso enseguida. Es para pintar salón y habitación.")
     ];
+
 
     let myproductsData = [
         {
@@ -620,7 +674,7 @@ function loadFakeData()
 
     const repairData = [
         new RepairApplication(
-            101, //id
+            201, //id
             1, //userId
             "Arreglo de Fuga en Tubería", //title
             0, // price
@@ -628,10 +682,11 @@ function loadFakeData()
             "Madrid", // location
             "Necesito un fontanero urgente para una pequeña fuga en el baño.", //description
             ["Fontanería", "Urgente", "24h"], //tags
-            [2, 3] // interestedPersons
+            [2, 3], // interestedPersons
+            [20101, 20102]
         ),
         new RepairApplication(
-            102,
+            202,
             1,
             "Pintar Salón y Habitación",
             0,
@@ -639,10 +694,11 @@ function loadFakeData()
             "Barcelona",
             "Pintar paredes y techo de salón (30m2) y una habitación (12m2).",
             ["Pintura", "Interior"],
-            [4]
+            [4],
+            [20201]
         ),
         new RepairApplication(
-            103,
+            203,
             1,
             "Instalación de Enchufe Doble",
             0,
@@ -886,4 +942,10 @@ function loadFakeData()
     sessionStorage.setItem("mytutorials", JSON.stringify(userTutorials))
     sessionStorage.setItem("tutorials", JSON.stringify(tutorials))
     sessionStorage.setItem("products", JSON.stringify(productsData))
+
+
+    sessionStorage.setItem("lastclientzone", "my-repairings.html")
+    sessionStorage.setItem("lastclientzoneid", "5")
+    sessionStorage.setItem("lastprofessionalzone", "repair_catalog.html")
+    sessionStorage.setItem("lastprofessionalzoneid", "1")
 }

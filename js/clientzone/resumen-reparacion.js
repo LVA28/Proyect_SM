@@ -1,28 +1,38 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Simulación de Datos de la Reparación (Lo que vendría de la BBDD)
-    const currentRepair = {
-        name: "Restauración Silla Antigua",
-        location: "Madrid Centro",
-        description: "Tengo una silla de madera de roble con una pata rota y el barniz desgastado. Necesito encolar y barnizar de nuevo.",
-        tags: "Carpintería, Restauración",
-        price: "50€ - 100€"
-    };
+function onLoadResumenReparacion() {
+    const myRepairs = JSON.parse(sessionStorage.getItem("myrepairs"))
+    const repairingId = sessionStorage.getItem("repairId")
+    let repairPos = 0;
+    let interestedUsers = [];
 
-    // 2. Simulación de Personas Interesadas
-    const interestedPeople = [
-        { name: "Juan Carpintero" },
-        { name: "Taller Hermanos López" },
-        { name: "Marta Restauraciones" }
-    ];
+    const repair = repairingId != "new" ? myRepairs.filter(n => n.id == repairingId)[0] : new RepairApplication(Math.max(...myRepairs.map(n => n.id)) + 1, -1, "", 0, "", "", "", [], [])
+
+    if(repairingId == "new")
+    {
+        document.querySelector('#title').textContent = "NUEVA REPARACIÓN"
+
+        document.querySelector('.persons').opacity = 0;
+    } else {
+        repairPos = myRepairs.indexOf(repair)
+        const users = JSON.parse(sessionStorage.getItem("users"))
+        interestedUsers = users.filter(n => repair.interestedPersons.includes(n.id))
+    }
 
     // --- FUNCIÓN: Cargar datos en el formulario ---
     function loadFormData() {
-        document.getElementById('repair-name').value = currentRepair.name;
-        document.getElementById('repair-location').value = currentRepair.location;
-        document.getElementById('repair-desc').value = currentRepair.description;
-        document.getElementById('repair-tags').value = currentRepair.tags;
-        document.getElementById('repair-price').value = currentRepair.price;
+        document.getElementById('repair-name').value = repair.name;
+        document.getElementById('repair-location').value = repair.location;
+        document.getElementById('repair-desc').value = repair.description;
+        document.getElementById('repair-tags').value = repair.tags;
+        document.getElementById('repair-price').value = repair.price;
+    }
+
+    function unloadFormData()
+    {
+        repair.name = document.getElementById('repair-name').value
+        repair.location = document.getElementById('repair-location').value
+        repair.description = document.getElementById('repair-desc').value
+        repair.tags = document.getElementById('repair-tags').value.split(',')
+        repair.price = document.getElementById('repair-price').value
     }
 
     // --- FUNCIÓN: Renderizar la lista de interesados ---
@@ -30,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('interested-list');
         container.innerHTML = ''; // Limpiar
 
-        interestedPeople.forEach(person => {
+        interestedUsers.forEach(person => {
             // Crear el contenedor de la fila (Estilo borde negro redondeado)
             const row = document.createElement('div');
             row.className = 'd-flex align-items-center border border-2 border-dark rounded-pill p-2 ps-3';
@@ -53,12 +63,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // Crear el texto del nombre
             const nameSpan = document.createElement('span');
             nameSpan.className = 'fw-bold text-uppercase';
-            nameSpan.textContent = person.name;
+            nameSpan.textContent = person.username;
 
             // Unir todo
             row.appendChild(iconCircle);
             row.appendChild(nameSpan);
             
+            row.addEventListener('click', () =>{
+                sessionStorage.setItem("repairId", repairingId)
+                sessionStorage.setItem("chatId", repair.interestedPersonsChats[interestedUsers.indexOf(person)])
+                sessionStorage.setItem("userId", repair.interestedPersons[interestedUsers.indexOf(person)])
+                loadContent("chat.html", null, "9", 'client')
+            })
+
             container.appendChild(row);
         });
     }
@@ -118,5 +135,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('repair-summary-form').addEventListener('submit', (e) => {
         e.preventDefault();
         alert('Reparación actualizada correctamente');
+
+        unloadFormData();
+
+        if(repairingId == "new")
+        {
+            myRepairs.push(repair)
+        } else {
+            myRepairs[repairPos] = repair
+        }
+
+        sessionStorage.setItem("myrepairs", JSON.stringify(myRepairs))
+        loadContent("my-repairings.html", null, "5", 'client')
     });
-});
+}

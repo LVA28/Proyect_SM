@@ -84,7 +84,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const defaultButton = document.getElementById('btn-catalogo');
             const navButtons = document.querySelectorAll('#sidebar-nav a[data-target]');
-            loadContent(defaultButton.getAttribute('data-target'), defaultButton, "5");
+            loadContent(sessionStorage.getItem("lastclientzone"), defaultButton, sessionStorage.getItem("lastclientzoneid"));
 
             navButtons.forEach(btn => {
                 btn.addEventListener('click', e => {

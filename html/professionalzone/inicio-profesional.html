@@ -85,13 +85,15 @@
         document.addEventListener('DOMContentLoaded', () => {
             const defaultButton = document.getElementById('btn-catalogo');
             const navButtons = document.querySelectorAll('#sidebar-nav a[data-target]');
-            loadContent(defaultButton.getAttribute('data-target'), defaultButton, "1");
+            const zone = sessionStorage.getItem("lastprofessionalzone");
+            console.log("loading " + zone)
+            loadContent(zone, defaultButton, sessionStorage.getItem("lastprofessionalzoneid"), 'professional');
 
             navButtons.forEach(btn => {
                 btn.addEventListener('click', e => {
                     e.preventDefault();
                     const target = btn.getAttribute('data-target');
-                    if (target) loadContent(target, btn, btn.getAttribute('data-load-id'));
+                    if (target) loadContent(target, btn, btn.getAttribute('data-load-id'), 'professional');
                 });
             });
 

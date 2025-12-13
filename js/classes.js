@@ -98,10 +98,11 @@ class Tutorial
 
 class ChatMessage
 {
-    constructor(id, userId, chatId, date, content)
+    constructor(id, userId, repairId, chatId, date, content)
     {
         this.id = id
         this.userId = userId
+        this.repairId = repairId
         this.chatId = chatId
         this.date = date
         this.content = content
@@ -115,7 +116,7 @@ class ChatMessage
 
 class RepairApplication
 {
-    constructor(id, userId, name, price, imageUrl, location, description, tags, interestedPersons)
+    constructor(id, userId, name, price, imageUrl, location, description, tags, interestedPersons, interestedPersonsChats = [])
     {
         this.id = id
         this.userId = userId
@@ -126,6 +127,7 @@ class RepairApplication
         this.description = description
         this.tags = tags
         this.interestedPersons = interestedPersons
+        this.interestedPersonsChats = interestedPersonsChats
     }
 
     static defaultRepairApplication()

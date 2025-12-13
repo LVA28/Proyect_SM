@@ -1,6 +1,6 @@
 // Simulación de datos: Productos artesanales y locales
 
-function createProductCard(product) {
+function createProductCard(product, productList) {
     const card = document.createElement('div');
     card.className = 'card border shadow-sm mb-3'; 
     
@@ -56,11 +56,25 @@ function createProductCard(product) {
     colDesc.appendChild(tagsBox);
     colDesc.appendChild(descBox);
 
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "BORRAR";
+
+    deleteButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        productList.splice(productList.indexOf(product), 1);
+
+        sessionStorage.setItem("myproducts", JSON.stringify(productList))
+
+        card.remove();
+    })
 
     // Ensamblar columnas en la fila
     row.appendChild(colInfo);
     row.appendChild(colImg);
     row.appendChild(colDesc);
+    row.appendChild(deleteButton);
+
 
     // Ensamblar fila en el cuerpo y cuerpo en la tarjeta
     cardBody.appendChild(row);
@@ -77,7 +91,7 @@ function renderProductCards(productsData) {
     if (container) {
         container.innerHTML = '';
         productsData.forEach(prod => {
-            const card = createProductCard(prod);
+            const card = createProductCard(prod, productsData);
             container.appendChild(card);
         });
     }

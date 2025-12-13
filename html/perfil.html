@@ -54,8 +54,8 @@
           </div>
         </div>
         <header class="mb-5">
-          <h1 class="fs-2 fw-normal mb-0">NOMBRE DE USUARIO</h1>
-          <p class="text-secondary fs-5 mt-0">@correo</p>
+          <h1 class="fs-2 fw-normal mb-0" id="username">NOMBRE DE USUARIO</h1>
+          <p class="text-secondary fs-5 mt-0" id="email">@correo</p>
         </header>
       </div>
     </main>
@@ -82,6 +82,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
   <script>
+    document.querySelector('#username').textContent = sessionStorage.getItem("username")
+    document.querySelector('#email').textContent = sessionStorage.getItem("email")
+
     document.getElementById('left-bar').addEventListener('click', () => {
       window.location.href = 'professionalzone/inicio-profesional.html';
     });

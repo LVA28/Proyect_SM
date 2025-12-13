@@ -9,9 +9,23 @@
     border-radius: 50%;
 }
 
+.main-chat
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-container
+{
+    flex-grow: 1;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .messages-container
 {
-    padding-bottom: 70vh;
+    flex-grow: 1;
     overflow-y: scroll;
 }
 

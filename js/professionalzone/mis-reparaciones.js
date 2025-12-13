@@ -112,7 +112,10 @@ function createRepairCard(application) {
 
     // Aquí podrías añadir un listener para ir al chat
     chatButton.addEventListener('click', () => {
-        loadContent("chat.html", null, "")
+        sessionStorage.setItem("chatId", application.interestedPersonsChats[application.interestedPersons.indexOf(-1)])
+        sessionStorage.setItem("repairId", application.id)
+        sessionStorage.setItem("userId", application.userId)
+        loadContent("chat.html", null, "9", 'professional')
     });
 
     chatButtonContainer.appendChild(chatButton);
@@ -121,6 +124,11 @@ function createRepairCard(application) {
     card.appendChild(imageContainer);
     card.appendChild(content);
     card.appendChild(chatButtonContainer);
+
+    card.addEventListener('click', () =>{
+        sessionStorage.setItem("repairId", application.id)
+        loadContent("repair-resume.html", null, "12", 'professional')
+    })
 
     return card;
 }
@@ -147,6 +155,8 @@ function renderRepairCards(repairData) {
 
 function onLoadMisReparaciones()
 {
-    let repairData = JSON.parse(sessionStorage.getItem("myrepairs"))
-    renderRepairCards(repairData);
+    let repairData = JSON.parse(sessionStorage.getItem("repairings"))
+
+    //Todas las reparaciones en las que el usuario haya estado interesado en ellas
+    renderRepairCards(repairData.filter(n => n.userId != -1 && n.interestedPersons.includes(-1)));
 }

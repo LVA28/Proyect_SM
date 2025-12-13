@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     document.querySelector('#login').addEventListener('click', () =>{
         sessionStorage.setItem("username", usernameInput.value)
+        sessionStorage.setItem("email", usernameInput.value + "@gmail.com")
         window.location.href = "../html/sharedcontent/choose_area.html"
     })
 

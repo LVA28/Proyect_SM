@@ -26,7 +26,8 @@ function onLoadMisTutoriales() {
 
     searchInput = document.querySelector('.search-input')
     document.querySelector('#add-new-button').addEventListener('click', () =>{
-        loadContent("nuevo-tutorial.html", null, "")
+        sessionStorage.setItem("tutorialId", "new")
+        loadContent("nuevo-tutorial.html", null, "10")
     })
     searchInput.addEventListener('keydown', (e) =>{
         if (e.key == "Enter" && searchInput.value !== lastSearchValue)
@@ -100,19 +101,19 @@ function renderTutorialList(tutorialsArray, container) {
     container.innerHTML = ""; // Limpia el container (opcional)
 
     tutorialsArray.forEach(tutorial => {
-        renderSingleTutorial(tutorial, container);
+        renderSingleTutorial(tutorial, container, tutorialsArray);
     });
 }
 
 
-function renderSingleTutorial(tutorial, container) {
+function renderSingleTutorial(tutorial, container, tutorialsArray) {
     const template = document.getElementById("tutorial-header-template");
-    const clone = template.content.cloneNode(true);
+    const clone = template.content.cloneNode(true).querySelector(".tutorial-header");
 
-    const tutorialElement = clone.querySelector(".tutorial-header");
 
-    tutorialElement.addEventListener("click", () => {
-        loadContent("nuevo-tutorial.html", null, "")
+    clone.addEventListener("click", () => {
+        sessionStorage.setItem("tutorialId", tutorial.id)
+        loadContent("nuevo-tutorial.html", null, "10", 'professional')
     });
 
     const img = clone.querySelector(".tutorial-image");
@@ -132,6 +133,16 @@ function renderSingleTutorial(tutorial, container) {
         span.textContent = tag;
         tagsContainer.appendChild(span);
     });
+
+    clone.querySelector('.delete-tutorial').addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        tutorialsArray.splice(tutorialsArray.indexOf(tutorial), 1)
+
+        sessionStorage.setItem("mytutorials", JSON.stringify(tutorialsArray))
+
+        clone.remove();
+    })
 
     container.appendChild(clone);
 }

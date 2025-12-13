@@ -3,7 +3,11 @@ const loadedScripts = new Set();
 const USERS_COUNT = 10;
 
 
-function loadContent(target, clickedButton, id) {
+function loadContent(target, clickedButton, id, zone = 'client') {
+    console.log("Saving " + target + " for zone " + zone)
+    sessionStorage.setItem(zone == 'client' ? "lastclientzone" : "lastprofessionalzone", target)
+    sessionStorage.setItem(zone == 'client' ? "lastclientzoneid" : "lastprofessionalzoneid", id)
+
     const main = document.getElementById('main-content');
     const navButtons = document.querySelectorAll('#sidebar-nav a[data-target]');
     main.innerHTML = '<p class="text-center text-muted p-5">Cargando...</p>';
@@ -11,8 +15,7 @@ function loadContent(target, clickedButton, id) {
         .then(r => r.text())
         .then(html => {
             main.innerHTML = html
-            executeScripts(main)
-            setTimeout(() => {
+            executeScripts(main).then(() => {
                 switch (id)
                 {
                     case "1":
@@ -39,8 +42,20 @@ function loadContent(target, clickedButton, id) {
                     case "8":
                         onLoadCatalogoDeTutoriales();
                         break;
+                    case "9":
+                        onLoadChat();
+                        break;
+                    case "10":
+                        onLoadNuevoTutorial();
+                        break;
+                    case "11":
+                        onLoadResumenReparacion();
+                        break;
+                    case "12":
+                        onLoadRepairResume();
+                        break;
                 }
-            }, 50)
+            })
         })
         .catch(() => main.innerHTML = '<div class="alert alert-danger">Error cargando contenido</div>');
 
