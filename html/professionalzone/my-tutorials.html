@@ -8,57 +8,66 @@
     <title>Mis tutoriales</title>
 </head>
 <body>
-    <main>
-        <h1>Mis tutoriales</h1>
-
-        <nav class="search-bar">
-            <button id="add-new-button">Añadir nuevo</button>
-
-            <div class="search-bar">
-                <input class="search-input" type="text">
-                <button>BUSCAR</button>
-            </div>
-
-            <div class="filters">
-                <div class="filter">
-                    <label>Vistas:</label>
-                    <select id="filter-by-views">
-                        <option>Más visitas</option>
-                        <option>Menos visitas</option>
-                    </select>
+   <main class="center-col">
+            <div class="container-fluid pt-4 px-4">
+                
+                <div class="title-box mb-4">
+                    MIS TUTORIALES
                 </div>
 
-                <div class="filter">
-                    <label>Fecha:</label>
-                    <select id="filter-by-date">
-                        <option>Más reciente</option>
-                        <option>Más antiguo</option>
-                    </select>
-                </div>
-            </div>
-        </nav>
+                <div class="toolbar-container mb-4">
+                    <button class="btn-add-new" onclick="window.location.href='nuevo-tutorial.html'">
+                        Añadir<br>nuevo
+                    </button>
 
-        <div class="tutorials-header-container">
+                    <div class="search-box-container">
+                        <input type="text" placeholder="BUSCADOR POR TEXTO">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </div>
 
-        </div>
-
-        <template id="tutorial-header-template">
-            <div class="tutorial-header">
-                <img class="tutorial-image">
-                <div class="tutorial-info">
-                    <div class="tutorial-first-row">
-                        <p class="tutorial-author"></p>
-                        <div class="tutorial-tags">
+                    <div class="filters-container">
+                        <div class="filter-box">
+                            <span>Visitas:</span>
+                            <span class="filter-value">Más altas</span>
+                        </div>
+                        <div class="filter-box">
+                            <span>Fecha:</span>
+                            <span class="filter-value">Más reciente</span>
                         </div>
                     </div>
-                    <p class="tutorial-description"></p>
                 </div>
-                <button class="delete-tutorial">BORRAR</button>
+
+                <div id="tutorials-list" class="tutorials-list">
+                    </div>
+
             </div>
-        </template>
+        </main>
 
-    </main>
+        <aside class="right-col-wrapper">
+            <div class="right-panel">
+                <div class="avatar-circle">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4m5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    </svg>
+                </div>
+                <div class="nav-arrow-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                    </svg>
+                </div>
 
-    <script src="../../js/professionalzone/my-tutorials.js"></script>
+                <div class="divider-line"></div>
+
+                <div class="profile-circle-bottom">
+                    Icono del<br>perfil
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <script src="../../js/clientzone/mis-tutoriales.js"></script>
 </body>
 </html>
