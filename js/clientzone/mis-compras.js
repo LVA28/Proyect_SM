@@ -56,25 +56,23 @@ function createProductCard(product, productList) {
     colDesc.appendChild(tagsBox);
     colDesc.appendChild(descBox);
 
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "BORRAR";
+    const seeChat = document.createElement('button');
+    seeChat.textContent = "Ver Chat"
 
-    deleteButton.addEventListener('click', (e) => {
-        e.stopPropagation();
+    seeChat.addEventListener('click', () =>{
 
-        productList.splice(productList.indexOf(product), 1);
+        sessionStorage.setItem("repairId", product.id)
+        sessionStorage.setItem("chatId", product.interestedPersonsChats[product.interestedPersons.indexOf(-1)])
+        sessionStorage.setItem("userId", product.userId)
+        loadContent("chat.html", null, "9", 'client')
 
-        sessionStorage.setItem("myproducts", JSON.stringify(productList))
-
-        card.remove();
     })
 
     // Ensamblar columnas en la fila
     row.appendChild(colInfo);
     row.appendChild(colImg);
     row.appendChild(colDesc);
-    row.appendChild(deleteButton);
-
+    row.appendChild(seeChat);
 
     // Ensamblar fila en el cuerpo y cuerpo en la tarjeta
     cardBody.appendChild(row);
@@ -144,9 +142,9 @@ function updateLabel(btnId, text) {
 
 
 // Inicialización
-function onLoadMisProductos()
+function onLoadMisCompras()
 {
-    let productsData = JSON.parse(sessionStorage.getItem("myproducts"))
+    let productsData = JSON.parse(sessionStorage.getItem("products")).filter(n => n.interestedPersons.includes(-1))
     renderProductCards(productsData);
-    setupSortListeners();
+    // setupSortListeners();
 }

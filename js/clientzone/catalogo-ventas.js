@@ -62,6 +62,10 @@ function createSaleCard(product) {
     cardBody.appendChild(row);
     card.appendChild(cardBody);
 
+    card.addEventListener('click', () => {
+        
+    })
+
     return card;
 }
 

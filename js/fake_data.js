@@ -638,7 +638,62 @@ function loadFakeData()
     new ChatMessage(2025, 4, 202, 20201, "2025-12-01T10:08:00Z",
         "Hola, puedo darte presupuesto si me envías fotos de las paredes."),
     new ChatMessage(2026, -1, 202, 20201, "2025-12-01T10:09:00Z",
-        "Claro, te las paso enseguida. Es para pintar salón y habitación.")
+        "Claro, te las paso enseguida. Es para pintar salón y habitación."),
+
+        // Conversación 50 ↔ -1
+new ChatMessage(
+    5001,
+    -1,
+    100,
+    30002,
+    "2025-12-02T09:15:00Z",
+    "Hola, ¿la mesa sigue disponible? Me interesa saber las medidas."
+),
+
+new ChatMessage(
+    5002,
+    15,
+    100,
+    30002,
+    "2025-12-02T09:18:00Z",
+    "Sí, sigue disponible. Mide 120x60 cm y 45 cm de alto."
+),
+// Conversación 54 ↔ -1
+new ChatMessage(
+    5003,
+    -1,
+    102,
+    30005,
+    "2025-12-03T17:40:00Z",
+    "Buenas, ¿el jarrón es resistente al agua o solo decorativo?"
+),
+
+new ChatMessage(
+    5004,
+    17,
+    102,
+    30005,
+    "2025-12-03T17:45:00Z",
+    "Es totalmente funcional, puede usarse con agua sin problema."
+),
+// Conversación -1 ↔ 55
+new ChatMessage(
+    5005,
+    -1,
+    103,
+    30009,
+    "2025-12-04T11:00:00Z",
+    "Hola, ¿la lámpara incluye bombilla?"
+),
+
+new ChatMessage(
+    5006,
+    20,
+    103,
+    30009,
+    "2025-12-04T11:02:00Z",
+    "Sí, incluye bombilla LED regulable."
+)
     ];
 
 
@@ -838,96 +893,44 @@ function loadFakeData()
     ];
 
     let productsData = [
-        {
-            id: 1,
-            name: "Mesa de Roble Restaurada",
-            price: "120€",
-            location: "Madrid",
-            tags: ["Muebles", "Upcycling", "Pieza única"],
-            description: "Mesa de centro antigua recuperada, tratada con barniz ecológico y patas de hierro forjado.",
-            date: "2023-11-10"
-        },
-        {
-            id: 2,
-            name: "Pack Jabones de Lavanda",
-            price: "18€",
-            location: "Valencia",
-            tags: ["Cosmética", "Vegano", "Km 0"],
-            description: "Set de 3 jabones artesanales hechos en frío con aceite de oliva virgen y lavanda de la zona.",
-            date: "2023-12-05"
-        },
-        {
-            id: 3,
-            name: "Jarrón Cerámica 'Azul'",
-            price: "45€",
-            location: "Sevilla",
-            tags: ["Decoración", "Hecho a mano", "Cerámica"],
-            description: "Jarrón torneado a mano y esmaltado en azul cobalto. Ideal para flores secas o decoración.",
-            date: "2023-10-28"
-        },
-        {
-            id: 4,
-            name: "Lámpara Industrial de Pie",
-            price: "85€",
-            location: "Bilbao",
-            tags: ["Iluminación", "Industrial", "Vintage"],
-            description: "Lámpara de pie con pantalla metálica y cable textil, regulador de intensidad incluido.",
-            date: "2024-03-15"
-        },
-        {
-            id: 5,
-            name: "Juego de 4 Cojines Bordados",
-            price: "32€",
-            location: "Granada",
-            tags: ["Textil", "Hecho a mano", "Hogar"],
-            description: "Cojines 45x45 cm con bordados artesanales y relleno hipoalergénico.",
-            date: "2024-05-02"
-        },
-        {
-            id: 6,
-            name: "Estantería Modular de Pino",
-            price: "70€",
-            location: "Valladolid",
-            tags: ["Muebles", "Montaje fácil", "Pino"],
-            description: "Estantería ligera de pino macizo, módulos apilables y tornillería incluida.",
-            date: "2024-08-21"
-        },
-        {
-            id: 7,
-            name: "Set Herramientas Jardín (5 piezas)",
-            price: "25€",
-            location: "A Coruña",
-            tags: ["Jardinería", "Herramientas", "Exterior"],
-            description: "Kit básico para jardinería: pala pequeña, rastrillo, tijeras de podar, azada y cultivador.",
-            date: "2024-07-10"
-        },
-        {
-            id: 8,
-            name: "Cuadro Acrílico 'Montaña Roja'",
-            price: "95€",
-            location: "Palma",
-            tags: ["Arte", "Acrílico", "Original"],
-            description: "Obra original en acrílico sobre lienzo 60x40 cm. Firmado por el autor.",
-            date: "2023-09-30"
-        },
-        {
-            id: 9,
-            name: "Bicicleta Urbana 7 velocidades (segunda mano)",
-            price: "150€",
-            location: "San Sebastián",
-            tags: ["Movilidad", "Bicicleta", "Segunda mano"],
-            description: "Bicicleta de ciudad en buen estado, revisión reciente, frenos y cambios ajustados.",
-            date: "2024-01-18"
-        },
-        {
-            id: 10,
-            name: "Pack Cocina: Tabla + Utensilios Madera",
-            price: "28€",
-            location: "Logroño",
-            tags: ["Cocina", "Madera", "Regalo"],
-            description: "Tabla de cortar grande y set de utensilios de madera (cuchara, espátula, pinzas). Acabado natural.",
-            date: "2024-02-27"
-        }
+    new Product(
+        100,
+        "Mesa de Roble Restaurada",
+        "Mesa de centro antigua recuperada, tratada con barniz ecológico y patas de hierro forjado.",
+        "img/mesa-roble.jpg",
+        "Madrid",
+        ["Muebles", "Upcycling", "Pieza única"],
+        "120€",
+        15,
+        [51, -1],
+        [30001, 30002]
+    ),
+
+    new Product(
+        102,
+        "Jarrón Cerámica 'Azul'",
+        "Jarrón torneado a mano y esmaltado en azul cobalto.",
+        "img/jarron-azul.jpg",
+        "Sevilla",
+        ["Decoración", "Hecho a mano", "Cerámica"],
+        "45€",
+        17,
+        [-1],
+        [30005]
+    ),
+
+    new Product(
+        104,
+        "Juego de 4 Cojines Bordados",
+        "Cojines con bordados artesanales y relleno hipoalergénico.",
+        "img/cojines.jpg",
+        "Granada",
+        ["Textil", "Hecho a mano", "Hogar"],
+        "32€",
+        20,
+        [58, -1],
+        [30008, 30009]
+    )
     ];
 
 
