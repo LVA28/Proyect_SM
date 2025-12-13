@@ -1,35 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../../css/clientzone/tutorials-catalog.css" rel='stylesheet' type='text/css'>
+    <title>Catálogo de Tutoriales</title>
     
-    <title>Catálogo de tutoriales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="../../css/clientzone/repair_catalog.css" rel="stylesheet">
+
+    <link href="../../css/clientzone/tutorials-catalog.css" rel="stylesheet">
 </head>
 <body>
-    <main>
-        <h1>Tutoriales</h1>
-        <div class="tutorials-container">
-            
-        </div>
-    </main>
 
-    <template id="tutorial-header-template">
-        <div class="tutorial-header">
-            <img class="repair-image">
-            <div class="tutorial-info">
-                <div class="tutorial-first-row">
-                    <p class="name">Nombre de la reparacion</p>
-                    <div class="tags-container">
+    <div class="main-row">
 
+        <aside class="left-col">
+            <div class="left-block" onclick="window.location.href='catalogo-reparaciones.html'">Para reparar:<br>catálogo</div>
+            <div class="left-block" onclick="window.location.href='mis-productos.html'">Mis productos</div>
+            <div class="left-block" onclick="window.location.href='mis-reparaciones.html'">MIS<br>REPARACIONES</div>
+            <div class="left-block" style="background-color: #e0e0e0;">Mis tutoriales</div>
+        </aside>
+
+        <main class="center-col">
+            <div class="container-fluid pt-4">
+                
+                <div class="catalog-title-box mb-4">
+                    CATÁLOGO DE TUTORIALES
+                </div>
+
+                <div class="search-bar-container mb-4">
+                    <input type="text" class="search-input" placeholder="BUSCADOR POR TEXTO">
+                    <div class="filters">
+                        <select><option>Precio: Menor a Mayor</option></select>
+                        <select><option>Fecha: Más reciente</option></select>
                     </div>
                 </div>
-                <p class="description"></p>
+
+                <div class="tutorials-container d-flex flex-column gap-3">
+                    </div>
+
+            </div>
+        </main>
+
+        <aside class="right-col-wrapper">
+            <div class="right-panel">
+                <div class="avatar-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4m5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    </svg>
+                </div>
+                <div class="nav-arrow my-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                    </svg>
+                </div>
+                <div class="divider-line"></div>
+                <div class="profile-circle-bottom">
+                    Icono del<br>perfil
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <template id="tutorial-header-template">
+        <div class="tutorial-card">
+            <div class="tutorial-image-container">
+                <img class="repair-image" alt="Tutorial">
+            </div>
+            <div class="tutorial-info">
+                <div class="tutorial-header-row">
+                    <p class="name">Nombre Tutorial</p>
+                </div>
+                <div class="tags-container"></div>
+                <p class="description">Descripción...</p>
             </div>
         </div>
     </template>
 
     <script src="../../js/clientzone/tutorials-catalog.js"></script>
+
 </body>
 </html>
