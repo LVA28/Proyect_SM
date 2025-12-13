@@ -1,53 +1,75 @@
-.user-image
-{
-    width: 50px;
-    height: 50px;
+/* chat.css */
 
-    min-width: 50px;
-    min-height: 50px;
-    
-    border-radius: 50%;
+/* Altura y borde de la tarjeta principal */
+.chat-card {
+    height: 75vh; /* Altura fija respecto a la ventana */
+    border-radius: 1rem;
+    overflow: hidden; /* Para que las esquinas redondeadas funcionen */
 }
 
-.main-chat
-{
+/* Contenedor con scroll */
+.messages-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #f8f9fa; /* Fondo gris muy claro */
     display: flex;
     flex-direction: column;
 }
 
-.chat-container
-{
-    flex-grow: 1;
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
+/* Estilo base de la imagen */
+.user-image {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
-.messages-container
-{
-    flex-grow: 1;
-    overflow-y: scroll;
+/* Estilo base de la burbuja */
+.chat-bubble {
+    max-width: 70%;
+    min-width: 120px;
+    font-size: 0.95rem;
 }
 
-.message-editor
-{
-    display: flex;
-    gap: 1rem;
+/* Estilos ESPECÍFICOS para mensajes DEL USUARIO (Derecha) */
+/* El JS añadirá la clase .user-message al contenedor padre */
+.user-message {
+    flex-direction: row-reverse; /* Imagen a la derecha */
 }
 
-#message-input
-{
-    flex-grow: 1;
+.user-message .chat-bubble {
+    background-color: #ffffff; 
+    color: #000;
+    border: 1px solid #dee2e6;
+    border-radius: 1.2rem 1.2rem 0 1.2rem; /* Esquina inferior derecha cuadrada */
+    margin-right: 10px; /* Separación de la imagen */
 }
 
-.message
-{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+/* Estilos ESPECÍFICOS para mensajes del OTRO (Izquierda) */
+/* El JS añadirá la clase .other-message al contenedor padre */
+.other-message {
+    flex-direction: row; /* Imagen a la izquierda */
 }
 
-.message.reverse
-{
-    flex-direction: row-reverse;
+.other-message .chat-bubble {
+    background-color: #ffffff;
+    border: 1px solid #000000; /* Borde negro según wireframe */
+    color: #000;
+    border-radius: 1.2rem 1.2rem 1.2rem 0; /* Esquina inferior izquierda cuadrada */
+    margin-left: 10px; /* Separación de la imagen */
+}
+
+/* Scrollbar personalizado (opcional, estilo moderno) */
+.messages-container::-webkit-scrollbar {
+    width: 8px;
+}
+.messages-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+.messages-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+.messages-container::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
 }

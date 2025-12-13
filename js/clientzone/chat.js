@@ -1,33 +1,51 @@
 'use strict'
 
-
-
-
-
-function validateText(text)
-{
-    return text.length != 0
+function validateText(text) {
+    return text && text.trim().length > 0;
 }
 
-function showMessages(messages, user, destinationUser)
-{
+function showMessages(messages, user, destinationUser) {
     messages.forEach(n => sendMessage(n, user, destinationUser, n.userId === user.id))
 }
 
-function sendMessage(message, user, destinationUser, isUser = true)
-{
-    const msg = messageTemplate.content.cloneNode(true);
+function sendMessage(message, user, destinationUser, isUser = true) {
+    const msgFragment = messageTemplate.content.cloneNode(true);
+    
+    const row = msgFragment.querySelector('.message-row');
+    const bubble = msgFragment.querySelector('.chat-bubble');
+    const img = msgFragment.querySelector('.user-image');
+    
+    // Contenido
+    msgFragment.querySelector('.content').textContent = message.content;
+    
+    // Fecha (formateada simple)
+    let dateObj = new Date(message.date);
+    let timeString = !isNaN(dateObj) 
+        ? dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
+        : message.date;
+    msgFragment.querySelector('.date').textContent = timeString;
 
-    msg.querySelector('.content').textContent = message.content
-    msg.querySelector('.date').textContent = message.date
-    msg.querySelector('.user-image').src = isUser ? user.profilePicture : destinationUser.profilePicture
+    // Imagen
+    img.src = isUser ? user.profilePicture : destinationUser.profilePicture;
 
-    if (isUser)
-    {
-        msg.querySelector('.message').classList.add('reverse')
+    // --- LÓGICA DE ALINEACIÓN ---
+    if (isUser) {
+        // USUARIO: ALINEAR A LA DERECHA
+        // 'flex-row-reverse' invierte el orden visual (Texto <- Imagen) y alinea al final (derecha)
+        row.classList.add('flex-row-reverse'); 
+        
+        // Estilo de burbuja verde
+        bubble.classList.add('bubble-user');
+    } else {
+        // OTRO: ALINEAR A LA IZQUIERDA (Por defecto flex-row)
+        row.classList.add('justify-content-start');
+        
+        // Estilo de burbuja blanca
+        bubble.classList.add('bubble-other');
     }
 
-    messagesContainer.appendChild(msg)
+    messagesContainer.appendChild(msgFragment);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
 let messageInput;
@@ -35,65 +53,76 @@ let sendButton;
 let messageTemplate;
 let messagesContainer;
 
-
 function onLoadChat() {
+    let repairId = sessionStorage.getItem("repairId");
+    let chatId = sessionStorage.getItem("chatId");
 
+    // Datos dummy o de session
+    let storedChats = sessionStorage.getItem("chats");
+    let totalMessages = storedChats ? JSON.parse(storedChats) : [];
+    let messages = totalMessages.filter(n => n.chatId == chatId);
 
-    let repairId = sessionStorage.getItem("repairId")
-    let chatId = sessionStorage.getItem("chatId")
+    let myUsername = sessionStorage.getItem("username") || "Yo";
+    // Avatar por defecto para el usuario actual
+    let user = new User(-1, myUsername, "", "", "https://i.pinimg.com/originals/e0/0f/a4/e00fa451a73e0ee92c5e6706a907625e.jpg"); 
+    
+    let storedUsers = sessionStorage.getItem("users");
+    let destinationUser = storedUsers 
+        ? JSON.parse(storedUsers).find(n => n.id == sessionStorage.getItem("userId")) 
+        : null;
 
-    let totalMessages = JSON.parse(sessionStorage.getItem("chats")) 
-    let messages = totalMessages.filter(n => n.chatId == chatId)
+    if (!destinationUser) destinationUser = { username: "Desconocido", profilePicture: "https://cdn.memegenerator.es/imagenes/memes/full/32/15/32159974.jpg" };
 
+    document.querySelector('.chatter-name').textContent = destinationUser.username;
 
-    let user = new User(-1, sessionStorage.getItem("username"), "", "", "https://i.pinimg.com/originals/e0/0f/a4/e00fa451a73e0ee92c5e6706a907625e.jpg");
-    let destinationUser = JSON.parse(sessionStorage.getItem("users")).filter(n => n.id == sessionStorage.getItem("userId"))[0]
-
-    console.log(destinationUser)
+    messagesContainer = document.querySelector('#messages-container');
+    messageTemplate = document.querySelector('#message-template');
+    messageInput = document.querySelector('#message-input');
+    sendButton = document.querySelector('#send-button');
 
     let canSend = false;
 
-    function newMessage(content, user, destinationUser, isUser = true)
-    {
-        return new ChatMessage(-1, isUser ? user.id : destinationUser.id, repairId, chatId, new Date(), content)
+    function processMessage() {
+        if (!canSend) return;
+
+        // Crear mensaje (isUser = true)
+        const message = new ChatMessage(-1, user.id, repairId, chatId, new Date(), messageInput.value);
+        
+        // Enviar a la pantalla
+        sendMessage(message, user, destinationUser, true);
+        
+        // Guardar
+        totalMessages.push(message);
+        sessionStorage.setItem("chats", JSON.stringify(totalMessages));
+        
+        messageInput.value = "";
+        canSend = false;
+        sendButton.disabled = true;
     }
-    function processMessage(user, destinationUser, isUser = true)
-    {
-        const message = newMessage(messageInput.value, user, destinationUser, isUser)
-        sendMessage(message, user, destinationUser, isUser)
-        totalMessages.push(message)
-        sessionStorage.setItem("chats", JSON.stringify(totalMessages))
-        messageInput.value = ""
-        messageInput.dispatchEvent(new Event('input'))
-    }
 
-
-
-    document.querySelector('.chatter-name').textContent = destinationUser.username
-
-    messagesContainer = document.querySelector('.messages-container')
-    messageTemplate = document.querySelector('#message-template')
-    messageInput = document.querySelector('#message-input')
-    sendButton = document.querySelector('#send-button')
-
-    sendButton.inert = !canSend
+    // Cargar mensajes previos
+    showMessages(messages, user, destinationUser);
 
     messageInput.addEventListener('keydown', (e) => {
-        if (e.key === "Enter" && canSend)
-        {
+        if (e.key === "Enter" && canSend) {
             e.preventDefault();
-            e.stopPropagation();
-            processMessage(user, destinationUser);
+            processMessage();
         }
-    })
+    });
 
-    showMessages(messages, user, destinationUser)
+    messageInput.addEventListener('input', (e) => {
+        canSend = validateText(e.target.value);
+        sendButton.disabled = !canSend;
+        
+        if(canSend) {
+            sendButton.classList.remove('btn-outline-dark');
+            sendButton.classList.add('btn-primary');
+        } else {
+            sendButton.classList.add('btn-outline-dark');
+            sendButton.classList.remove('btn-primary');
+        }
+    });
 
-    messageInput.addEventListener('input', (e) =>{
-        canSend = validateText(e.target.value)
-        sendButton.inert = !canSend;
-    })
-
-    sendButton.addEventListener('click', processMessage)
+    sendButton.addEventListener('click', processMessage);
+    sendButton.disabled = true; // Estado inicial
 }
-
