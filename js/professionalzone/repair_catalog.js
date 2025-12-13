@@ -7,82 +7,124 @@
 function insertarProducto(productos) {
     limpiarPantalla();
 
-    let catalago = document.getElementById("catalog-container");
-    console.log(productos.length)
+    let catalogo = document.getElementById("catalog-container");
+
+    // Verificamos si hay productos antes de iterar
+    if (!productos || productos.length === 0) {
+        catalogo.innerHTML = '<div class="text-center w-100 py-5 text-muted">No se encontraron reparaciones disponibles.</div>';
+        return;
+    }
+
     for (let i = 0; i < productos.length; i++) {
-        let div1 = document.createElement("div");
-        div1.className = "catalog-item";
+        // 1. Crear la tarjeta contenedora (Card de Bootstrap)
+        let card = document.createElement("div");
+        card.className = "card w-100 shadow-sm border-0 overflow-hidden"; // Estilo limpio con sombra suave
+        card.style.cursor = "pointer"; // Indica que es clickable
 
-        let div2 = document.createElement("div");
-        div2.className = "row gx-3";
+        // 2. Crear la fila interna (Row) para diseño horizontal
+        let row = document.createElement("div");
+        row.className = "row g-0 align-items-center"; // g-0 quita espacios extra, align-items-center centra verticalmente
 
-        let div3 = document.createElement("div");
-        div3.className = "col-12 col-md-3 d-flex flex-column gap-2 mb-3 mb-md-0";
+        // --- COLUMNA DE IMAGEN (Col-md-3) ---
+        let colImg = document.createElement("div");
+        colImg.className = "col-12 col-md-3 bg-light d-flex align-items-center justify-content-center";
+        colImg.style.minHeight = "200px"; // Altura mínima para que se vea bien
 
-        let divName = document.createElement("div");
-        divName.className = "name-box";
-        divName.textContent = `${productos[i].name}`;
+        // Lógica para imagen: Si hay URL, usa <img>, si no, un placeholder
+        if (productos[i].imageUrl) {
+            let img = document.createElement("img");
+            img.src = productos[i].imageUrl;
+            img.className = "img-fluid h-100 w-100 object-fit-cover";
+            img.alt = productos[i].name;
+            colImg.appendChild(img);
+        } else {
+            // Placeholder si no hay imagen
+            let placeholder = document.createElement("span");
+            placeholder.className = "text-muted fw-bold text-uppercase text-center p-3";
+            placeholder.textContent = "Sin Imagen";
+            colImg.appendChild(placeholder);
+        }
 
-        let divPrecio = document.createElement("div");
-        divPrecio.className = "meta-box";
-        divPrecio.textContent = `${productos[i].price}€`;
+        // --- COLUMNA DE CONTENIDO (Col-md-9) ---
+        let colBody = document.createElement("div");
+        colBody.className = "col-12 col-md-9";
 
-        let divLugar = document.createElement("div");
-        divLugar.className = "meta-box";
-        divLugar.textContent = `${productos[i].location}`;
+        let cardBody = document.createElement("div");
+        cardBody.className = "card-body d-flex flex-column gap-2";
 
-        let div4 = document.createElement("div");
-        div4.className = "col-12 col-md-4 mb-3 mb-md-0";
+        // Encabezado: Nombre y Precio
+        let headerDiv = document.createElement("div");
+        headerDiv.className = "d-flex justify-content-between align-items-start";
 
-        let div5 = document.createElement("div");
-        div5.className = "image-box";
+        let title = document.createElement("h5");
+        title.className = "card-title fw-bold mb-0 text-truncate";
+        title.style.maxWidth = "70%";
+        title.textContent = productos[i].name;
 
-        let divSpan = document.createElement("span");
-        divSpan.className = "text-uppercase fw-bold";
+        let price = document.createElement("span");
+        price.className = "badge bg-secondary fs-6"; // Etiqueta de precio estilo Bootstrap
+        price.textContent = `${productos[i].price} €`;
 
-        let div6 = document.createElement("div");
-        div6.className = "col-12 col-md-5 d-flex flex-column";
+        headerDiv.appendChild(title);
+        headerDiv.appendChild(price);
 
-        let div7 = document.createElement("div");
-        div7.className = "desc-box";
-        div7.textContent =  `${productos[i].description}`;
+        // Ubicación
+        let location = document.createElement("p");
+        location.className = "card-text text-body-secondary small mb-1";
+        location.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-geo-alt-fill me-1" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg> ${productos[i].location}`;
+
+        // Descripción
+        let description = document.createElement("p");
+        description.className = "card-text text-muted";
+        // Limitamos la descripción visualmente a 2 líneas
+        description.style.display = "-webkit-box";
+        description.style.webkitLineClamp = "2";
+        description.style.webkitBoxOrient = "vertical";
+        description.style.overflow = "hidden";
+        description.textContent = productos[i].description;
+
+        // Botón de Chat (Alineado a la derecha o ancho completo en móvil)
+        let actionDiv = document.createElement("div");
+        actionDiv.className = "mt-auto d-flex justify-content-md-end";
 
         let btnChat = document.createElement("button");
-        btnChat.className = "chat-btn";
+        btnChat.className = "btn btn-primary px-4"; // Botón azul estándar
         btnChat.textContent = "INICIAR CHAT";
+        
+        // Evento del botón CHAT
         btnChat.onclick = (e) => {
-            e.stopPropagation()
-            sessionStorage.setItem("repairId", productos[i].id)
-            sessionStorage.setItem("chatId", productos[i].interestedPersonsChats[productos[i].interestedPersons.indexOf(-1)])
-            sessionStorage.setItem("userId", productos[i].userId)
-            loadContent("chat.html", null, "9", 'professional')
+            e.stopPropagation(); // Evita que se dispare el click de la tarjeta
+            sessionStorage.setItem("repairId", productos[i].id);
+            // Verificación de seguridad por si arrays son undefined
+            let chatIndex = productos[i].interestedPersons ? productos[i].interestedPersons.indexOf(-1) : -1;
+            let chatId = (chatIndex !== -1 && productos[i].interestedPersonsChats) ? productos[i].interestedPersonsChats[chatIndex] : null;
+            
+            sessionStorage.setItem("chatId", chatId);
+            sessionStorage.setItem("userId", productos[i].userId);
+            loadContent("chat.html", null, "9", 'professional');
         };
 
-        div6.append(div7);
-        div6.append(btnChat);
-        
-        div5.append(divSpan);
-        div4.append(div5);
+        actionDiv.appendChild(btnChat);
 
-        div3.append(divName);
-        div3.append(divPrecio);
-        div3.append(divLugar);
+        // Construcción del árbol DOM
+        cardBody.appendChild(headerDiv);
+        cardBody.appendChild(location);
+        cardBody.appendChild(description);
+        cardBody.appendChild(actionDiv);
 
-        div2.append(div3);
-        div2.append(div4);
-        div2.append(div6);
+        colBody.appendChild(cardBody);
+        row.appendChild(colImg);
+        row.appendChild(colBody);
+        card.appendChild(row);
 
-        div1.append(div2);
-        catalago.append(div1);
+        // Evento click en toda la tarjeta (Ir a detalle)
+        card.addEventListener('click', () => {
+            sessionStorage.setItem("repairId", productos[i].id);
+            loadContent("repair-resume.html", null, "12", 'professional');
+        });
 
-        div1.addEventListener('click', () => {
-            sessionStorage.setItem("repairId", productos[i].id)
-            loadContent("repair-resume.html", null, "12", 'professional')
-        })
-
-        let separator = document.createElement("div");
-        separator.className = "item-separator";
-        catalago.append(separator);
+        // Insertar en el catálogo
+        catalogo.appendChild(card);
     }
 }
 
@@ -95,11 +137,14 @@ function limpiarPantalla() {
 
 function onLoadCatalogo()
 {
-    let productos = JSON.parse(sessionStorage.getItem("repairings"))
-    insertarProducto(productos);
+    // Verificamos que exista el item en sessionStorage antes de parsear
+    let storedData = sessionStorage.getItem("repairings");
+    if (storedData) {
+        let productos = JSON.parse(storedData);
+        insertarProducto(productos);
+    } else {
+        console.warn("No se encontraron datos en 'repairings'");
+        // Opcional: mostrar mensaje de vacío
+        insertarProducto([]); 
+    }
 }
-
-// document.addEventListener('DOMContentLoaded', () => {
-    // insertarProducto(productos);
-// });
-
