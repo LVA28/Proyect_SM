@@ -57,7 +57,8 @@ function loadTutorialHeader(container, tutorial) {
     // Al hacer clic, vamos al detalle
     cardElement.querySelector('.tutorial-card').addEventListener('click', () => {
         // Redirección simple si no tienes la función loadContent
-        window.location.href = "nuevo-tutorial.html"; 
+        sessionStorage.setItem("videoId", tutorial.id)
+        loadContent("video-player.html", null, "13", 'client') 
     });
 
     container.appendChild(cardElement);

@@ -56,7 +56,7 @@ class User
 
 class Product
 {
-    constructor(id, name, description, imageUrl, location, tags, price, userId, interestedPersons)
+    constructor(id, name, description, imageUrl, location, tags, price, userId, interestedPersons, interestedPersonsChats)
     {
         this.id = id
         this.name = name
@@ -67,12 +67,13 @@ class Product
         this.price = price
         this.userId = userId
         this.interestedPersons = interestedPersons
+        this.interestedPersonsChats = interestedPersonsChats
     }
 
-    static defaultProduct()
-    {
-        return Product(getRandomId(), "", "", "", "", [], 0, -1, [])
-    }
+    // static defaultProduct()
+    // {
+    //     return Product(getRandomId(), "", "", "", "", [], 0, -1, [])
+    // }
 }
 
 class Tutorial
