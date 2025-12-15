@@ -47,7 +47,7 @@ function onLoadObjectResume() {
 
 function fillForm(dataObject)
 {
-    repairImage.src = dataObject.imageUrl;
+    repairImage.src = '/resources/images/products/' + dataObject.imageUrl;
     repairPrice.textContent = dataObject.price
     repairName.textContent = dataObject.name
     repairLocation.textContent = dataObject.location

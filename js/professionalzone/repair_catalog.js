@@ -33,7 +33,7 @@ function insertarProducto(productos) {
         // Lógica para imagen: Si hay URL, usa <img>, si no, un placeholder
         if (productos[i].imageUrl) {
             let img = document.createElement("img");
-            img.src = productos[i].imageUrl;
+            img.src = '/resources/images/repairings/' + productos[i].imageUrl;
             img.className = "img-fluid h-100 w-100 object-fit-cover";
             img.alt = productos[i].name;
             colImg.appendChild(img);

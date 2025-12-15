@@ -73,7 +73,7 @@ function createTutorialHeader(tutorial) {
     // Rellenar Imagen
     const img = copy.querySelector('.repair-image');
     if (img) {
-        img.src = tutorial.bannerUrl || "https://via.placeholder.com/200x120"; // Imagen por defecto si falla
+        img.src = '/resources/images/tutorials/banners/' + tutorial.bannerUrl || "https://via.placeholder.com/200x120"; // Imagen por defecto si falla
     }
 
     // Rellenar Descripción

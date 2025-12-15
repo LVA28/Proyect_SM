@@ -5,7 +5,10 @@ function validateText(text) {
 }
 
 function showMessages(messages, user, destinationUser) {
-    messages.forEach(n => sendMessage(n, user, destinationUser, n.userId === user.id))
+    messages.forEach(n => {
+        console.log(n)
+        sendMessage(n, user, destinationUser, n.userId == -1)
+    });
 }
 
 function sendMessage(message, user, destinationUser, isUser = true) {
@@ -25,8 +28,13 @@ function sendMessage(message, user, destinationUser, isUser = true) {
         : message.date;
     msgFragment.querySelector('.date').textContent = timeString;
 
+    console.log(user)
+    console.log(destinationUser)
+
     // Imagen
-    img.src = isUser ? user.profilePicture : destinationUser.profilePicture;
+    img.src = isUser ? user.profilePicture : '/resources/images/users/' + destinationUser.profilePicture;
+
+    console.log(img.src)
 
     // --- LÓGICA DE ALINEACIÓN ---
     if (isUser) {
@@ -64,14 +72,16 @@ function onLoadChat() {
 
     let myUsername = sessionStorage.getItem("username") || "Yo";
     // Avatar por defecto para el usuario actual
-    let user = new User(-1, myUsername, "", "", "https://i.pinimg.com/originals/e0/0f/a4/e00fa451a73e0ee92c5e6706a907625e.jpg"); 
+    let user = new User(-1, myUsername, "", "", "/resources/images/user.jpg"); 
     
     let storedUsers = sessionStorage.getItem("users");
     let destinationUser = storedUsers 
         ? JSON.parse(storedUsers).find(n => n.id == sessionStorage.getItem("userId")) 
         : null;
 
-    if(Math.floor(Math.random() * 2) == 0) destinationUser = { username: "Desconocido", profilePicture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtNNU6hAkRbRelTwgSw9HRMKqu_wn2i3Wm2g&s" };
+    console.log(destinationUser)
+
+    // if(Math.floor(Math.random() * 2) == 0) destinationUser = { username: "Desconocido", profilePicture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtNNU6hAkRbRelTwgSw9HRMKqu_wn2i3Wm2g&s" };
 
     document.querySelector('.chatter-name').textContent = destinationUser.username;
 

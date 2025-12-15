@@ -105,3 +105,10 @@
     font-size: 0.95rem;
     line-height: 1.4;
 }
+
+img
+{
+    object-fit: fill;
+    height: 100%;
+    width: 100%;
+}

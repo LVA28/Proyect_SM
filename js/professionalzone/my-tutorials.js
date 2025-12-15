@@ -113,7 +113,7 @@ function renderSingleTutorial(tutorial, container, tutorialsArray) {
 
   const img = clone.querySelector(".tutorial-image");
   if (img) {
-    img.src = tutorial.bannerUrl || "https://via.placeholder.com/400x300?text=Sin+Imagen";
+    img.src = '/resources/images/tutorials/banners/' + tutorial.bannerUrl || "https://via.placeholder.com/400x300?text=Sin+Imagen";
     img.alt = tutorial.name;
   }
 

@@ -22,7 +22,12 @@ function onLoadNuevoTutorial() {
         document.querySelector('#video-name').value = tuto.name;
         document.querySelector('#video-desc').value = tuto.description;
         document.querySelector('#video-tags').value = tuto.tags;
-        videoPreview.src = tuto.videoUrl;
+        if (tuto.videoUrl.startsWith('blob')) {
+            videoPreview.src = tuto.videoUrl;
+            } else {
+            videoPreview.src = '/resources/images/tutorials/videos/' + tuto.videoUrl;
+            }
+
 
         placeholder.classList.add('d-none');     // Oculta el "+ INSERTAR"
         videoPreview.classList.remove('d-none'); // Muestra el reproductor

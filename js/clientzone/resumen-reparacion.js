@@ -19,11 +19,28 @@ function onLoadResumenReparacion() {
 
     // --- FUNCIÓN: Cargar datos en el formulario ---
     function loadFormData() {
+    const carouselTrack = document.getElementById('carousel-track');
+
+    placeholder.classList.add('d-none');
+            carousel.classList.remove('d-none');
         document.getElementById('repair-name').value = repair.name;
         document.getElementById('repair-location').value = repair.location;
         document.getElementById('repair-desc').value = repair.description;
         document.getElementById('repair-tags').value = repair.tags;
         document.getElementById('repair-price').value = repair.price;
+
+        const carouselItem = document.createElement('div');
+        // El primero debe tener la clase 'active'
+        carouselItem.className = `carousel-item h-100 ${0 === 0 ? 'active' : ''}`;
+        
+        // Crear la imagen
+        const img = document.createElement('img');
+        img.src = '/resources/images/repairings/' + repair.imageUrl;
+        img.className = 'd-block w-100 h-100';
+        img.style.objectFit = 'contain'; // Para que la foto se vea entera sin recortarse
+        
+        carouselItem.appendChild(img);
+        carouselTrack.appendChild(carouselItem);
     }
 
     function unloadFormData()
@@ -39,6 +56,7 @@ function onLoadResumenReparacion() {
     function renderInterestedPeople() {
         const container = document.getElementById('interested-list');
         container.innerHTML = ''; // Limpiar
+    const placeholder = document.getElementById('upload-placeholder');
 
         interestedUsers.forEach(person => {
             // Crear el contenedor de la fila (Estilo borde negro redondeado)

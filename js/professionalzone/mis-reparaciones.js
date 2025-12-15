@@ -49,11 +49,12 @@ function createRepairCard(application) {
     card.id = `repair-${application.id}`;
 
     // Contenedor de la imagen / bloque gris
-    const imageContainer = document.createElement('div');
+    const imageContainer = document.createElement('img');
+    imageContainer.src = '/resources/images/repairings/' + application.imageUrl
     imageContainer.className = 'd-flex justify-content-center align-items-center me-md-3 mb-3 mb-md-0 border rounded flex-shrink-0';
     imageContainer.style.width = '200px';
     imageContainer.style.height = '120px';
-    imageContainer.innerHTML = '<strong class="text-secondary">PRIMERA IMAGEN</strong>';
+    // imageContainer.innerHTML = '<strong class="text-secondary">PRIMERA IMAGEN</strong>';
 
     // Contenido de la reparación (nombre, descripción, tags)
     const content = document.createElement('div');

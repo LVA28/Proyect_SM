@@ -7,7 +7,7 @@ function onLoadVideoPlayer() {
 
     let tagsContainer = document.querySelector('.tags')
 
-    document.querySelector('#video-player').src = video.videoUrl;
+    document.querySelector('#video-player').src = '/resources/images/tutorials/videos/' + video.videoUrl;
     document.querySelector('#player').load()
 
     video.tags.forEach(t => {

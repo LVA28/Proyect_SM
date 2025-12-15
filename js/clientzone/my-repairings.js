@@ -20,7 +20,7 @@ function renderSingleRepair(repair, container, repairList) {
     clone.querySelector(".repairing-description").textContent = repair.description;
 
     const image = clone.querySelector(".repairing-image");
-    image.src = repair.imageUrl;
+    image.src = '/resources/images/repairings/' + repair.imageUrl;
     image.alt = repair.name;
 
     // Rellenar tags

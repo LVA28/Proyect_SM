@@ -28,11 +28,12 @@ function createProductCard(product, productList) {
     const colImg = document.createElement('div');
     colImg.className = 'col-md-4';
     
-    const imgPlaceholder = document.createElement('div');
+    const imgPlaceholder = document.createElement('img');
+    imgPlaceholder.src = '/resources/images/products/' + product.imageUrl
     imgPlaceholder.className = 'd-flex justify-content-center align-items-center border bg-light';
     imgPlaceholder.style.height = '150px';
     imgPlaceholder.style.width = '100%';
-    imgPlaceholder.innerHTML = '<span class="text-secondary text-center">PRIMERA IMAGEN</span>';
+    // imgPlaceholder.innerHTML = '<span class="text-secondary text-center">PRIMERA IMAGEN</span>';
     
     colImg.appendChild(imgPlaceholder);
 
